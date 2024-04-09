@@ -1,0 +1,87 @@
+body {
+  overflow-x: hidden;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.page {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("./assets/Noise.png");
+  background-color: #feffdd;
+  color: black;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.circle {
+  position: fixed;
+  top: 75%;
+  left: 50%;
+  height: 2500px;
+  width: 2500px;
+  /* border-radius: 50%; */
+  background: transparent;
+  /* border: 2px dotted black; */
+  transform: translate(-50%) rotate(0deg);
+  transition: all 800ms cubic-bezier(0.7, 0, 0.3, 1);
+}
+.item {
+  position: fixed;
+  transition: all 800ms cubic-bezier(0.7, 0, 0.3, 1);
+  font-family: "IBM Plex Mono";
+  font-size: 15px;
+  background: #ffeeb2;
+  width: 110px;
+  height: 122px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-width: 0.1px;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+.item1 {
+  top: 0%;
+  left: 50%;
+}
+.item2 {
+  top: 1%;
+  left: 60%;
+}
+.item3 {
+  top: 4%;
+  left: 70%;
+}
+.item4 {
+  top: 9%;
+  left: 80%;
+}
+.pages {
+  height: 100vh;
+  width: 100vw;
+  font-size: 1.25rem;
+  overflow-x: hidden;
+}
+/* .outlined-text {
+  -webkit-text-stroke-width: 0.1px;
+  -webkit-text-stroke-color: black;
+
+   color:transparent;
+  
+  @apply text-transparent;
+
+  
+  @apply text-[#feffdd];
+  @apply text-opacity-100; 
+
+  text-shadow: 1px 1px 0 #FFDC5F, 2px 2px 0 #FFDC5F, 3px 3px 0 #FFDC5F,
+    4px 4px 0 #FFDC5F, 5px 5px 0 #FFDC5F, 6px 6px 0 #FFDC5F, 7px 7px 0 #FFDC5F,
+    8px 8px 0 #FFDC5F, 9px 9px 0 #FFDC5F, 10px 10px 0 #FFDC5F, 11px 11px 0 #FFDC5F,
+    12px 12px 0 #FFDC5F, 13px 13px 0 #FFDC5F, 14px 14px 0 #FFDC5F, 15px 15px 0 #FFDC5F,
+    16px 16px 0 #FFDC5F, 17px 17px 0 #FFDC5F, 18px 18px 0 #FFDC5F, 19px 19px 0 #FFDC5F,
+    20px 20px 0 #FFDC5F;
+} */
