@@ -419,7 +419,7 @@ export default function TreePage() {
         }
       />
       {showCard && (
-        <div className="fixed bottom-20 right-10 w-[400px] h-max bg-[#FEFFDD] border border-black border-dashed font-IBM-Plex-Mono p-8 rounded-3xl overflow-y-scroll scrollbar-none px-10">
+        <div className="fixed z-50 bottom-20 right-10 w-[400px] h-max bg-[#FEFFDD] border border-black border-dashed font-IBM-Plex-Mono p-8 rounded-3xl overflow-y-scroll scrollbar-none px-10">
           <div className="flex justify-between">
             <div className="flex flex-col justify-between items-start">
               <div className="text-[28px] font-semibold">

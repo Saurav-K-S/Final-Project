@@ -13,7 +13,7 @@ export default function Profile() {
   const [viewFile, setViewFile] = useState();
   useEffect(() => {
     axios
-      .get("https://ancestree-backend-cew7.onrender.com/api/v1/user/view", {
+      .get("https://ancestree-backend.onrender.com/api/v1/user/view", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -53,7 +53,7 @@ export default function Profile() {
     console.log(formData);
     axios
       .post(
-        "https://ancestree-backend-cew7.onrender.com/api/v1/family/upload",
+        "https://ancestree-backend.onrender.com/api/v1/family/upload",
         formData,
         {
           headers: {

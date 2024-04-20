@@ -17,7 +17,7 @@ export default function ChangePassword(props) {
     if (psswdcheck) {
       axios
         .post(
-          "https://ancestree-backend-cew7.onrender.com/api/v1/user/changepassword",
+          "https://ancestree-backend.onrender.com/api/v1/user/changepassword",
           {
             mobileNumber: Number(props.numberValue),
             password: password,

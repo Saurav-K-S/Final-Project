@@ -30,7 +30,7 @@ export default function UploadPhotoOG(props) {
     console.log(formData);
     axios
       .post(
-        "https://ancestree-backend-cew7.onrender.com/api/v1/family/upload",
+        "https://ancestree-backend.onrender.com/api/v1/family/upload",
         formData,
         {
           headers: {

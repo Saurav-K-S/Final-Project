@@ -10,7 +10,7 @@ export default function ForgotPasswordNumber(props) {
   const [alertMsg, setAlertMsg] = useState("");
   function Submit() {
     axios
-      .post("https://ancestree-backend-cew7.onrender.com/api/v1/user/forgot", {
+      .post("https://ancestree-backend.onrender.com/api/v1/user/forgot", {
         mobileNumber: Number(props.numberValue),
       })
       .then(function (response) {

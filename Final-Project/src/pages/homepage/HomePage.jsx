@@ -14,7 +14,7 @@ export default function HomePage() {
 
   useEffect(() => {
     axios
-      .get("https://ancestree-backend-cew7.onrender.com/api/v1/family/home", {
+      .get("https://ancestree-backend.onrender.com/api/v1/family/home", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -35,7 +35,7 @@ export default function HomePage() {
 
     axios
       .get(
-        "https://ancestree-backend-cew7.onrender.com/api/v1/family/event/notification/" +
+        "https://ancestree-backend.onrender.com/api/v1/family/event/notification/" +
           `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -53,7 +53,7 @@ export default function HomePage() {
   function submitHomeChange() {
     axios
       .put(
-        "https://ancestree-backend-cew7.onrender.com/api/v1/family/update",
+        "https://ancestree-backend.onrender.com/api/v1/family/update",
         { name: familyName, history: familyHistory },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

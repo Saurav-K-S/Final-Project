@@ -11,7 +11,7 @@ export default function SignUpNumber(props) {
   function Submit() {
     console.log("HIIII")
     axios
-      .post("https://ancestree-backend-cew7.onrender.com/api/v1/user/register", {
+      .post("https://ancestree-backend.onrender.com/api/v1/user/register", {
         email: props.emailValue,
       })
       .then(function (response) {

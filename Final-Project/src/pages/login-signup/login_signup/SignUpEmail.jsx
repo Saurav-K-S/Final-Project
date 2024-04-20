@@ -28,7 +28,7 @@ export default function SignUpEmail(props) {
   }, []);
   function Continue() {
     if (psswdcheck) {
-      localStorage.setItem('name', props.name)
+      localStorage.setItem('name', props.name);
       props.indexFunc(1);
     } else {
       setAlertMsg("Invalid Password!"), setShowAlert(true);

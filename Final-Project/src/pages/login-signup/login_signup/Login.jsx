@@ -31,7 +31,7 @@ export default function Login(props) {
 
   function Submit() {
     axios
-      .post("https://ancestree-backend-cew7.onrender.com/api/v1/user/login", {
+      .post("https://ancestree-backend.onrender.com/api/v1/user/login", {
         mobileNumber: phonenumber,
         password: password,
       })
@@ -49,6 +49,7 @@ export default function Login(props) {
         }
       })
       .catch(function (error) {
+        console.log(error);
         setAlertMsg(error.response.data.msg);
         setShowAlert(true);
         passwordInputRef.current.value = "";
