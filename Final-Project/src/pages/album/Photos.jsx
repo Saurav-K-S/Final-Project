@@ -11,6 +11,8 @@ export default function Photos() {
   const [file, setFile] = useState();
   const [viewFile, setViewFile] = useState();
   const [imageSRC, setImageSRC] = useState();
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
   useEffect(() => {
     console.log(id);
     axios
@@ -21,15 +23,26 @@ export default function Photos() {
         }
       )
       .then(function (response) {
-        console.log(response);
-        setPhotosData(response.data.albumsFiles);
+        if (response.data.success) {
+          
+          console.log(response);
+          setPhotosData(response.data.albumsFiles);
+        } else {
+          setAlertMsg(response.data.msg);
+          setShowAlert(true);
+        }
       })
       .catch(function (error) {
 if(error.response.status == 401){navigate("/")
             localStorage.setItem("token", "");}
+            setAlertMsg(error.response.data.msg);
+            setShowAlert(true);
         console.log(error);
       });
   }, []);
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
   function onChange(e) {
     setUploaded(true);
     console.log(e);
@@ -203,6 +216,7 @@ if(error.response.status == 401){navigate("/")
       >
         Upload Image
       </div>
+      {showAlert && <Alert alertMsg={alertMsg} closeAlert={closeAlert} />}
     </div>
   );
 }

@@ -5,6 +5,8 @@ import axios from "axios";
 
 export default function FamilyHistory(props) {
   const [history, setHistory] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
 
   function cont() {
     axios.post("https://ancestree-backend.onrender.com/api/v1/family/create",{name:props.familyName,
@@ -16,14 +18,23 @@ export default function FamilyHistory(props) {
         localStorage.setItem('token', response.data.token)
         props.indexFunc(5)
       }
-    })
-    .catch(function (error) {
-if(error.response.status == 401){navigate("/")
-            localStorage.setItem("token", "");}
+      else{
+        setAlertMsg(response.data.msg);
+          setShowAlert(true);
+        }
+      })
+      .catch(function (error) {
+        if(error.response.status == 401){navigate("/")
+        localStorage.setItem("token", "");}
+        setAlertMsg(error.response.data.msg);
+          setShowAlert(true);
       console.log(error)
     });
     
   }
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center">
       <Heading head={"Welcome " + props.name} />
@@ -55,6 +66,7 @@ if(error.response.status == 401){navigate("/")
         </div>
         <SubmitButton action="Continue" func={cont}/>
       </div>
+      {showAlert && <Alert alertMsg={alertMsg} closeAlert={closeAlert} />}
     </div>
   );
 }

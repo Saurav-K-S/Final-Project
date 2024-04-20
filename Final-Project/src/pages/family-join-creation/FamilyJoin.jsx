@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 export default function FamilyJoin(props) {
   const [refID, setrefID] = useState();
   const navigate = useNavigate();
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
 
   function join() {
     axios.put("https://ancestree-backend.onrender.com/api/v1/user/refUpdate",{ref:refID},{
@@ -19,13 +21,22 @@ export default function FamilyJoin(props) {
         
         navigate('/basepage')
       }
-    })
-    .catch(function (error) {
-if(error.response.status == 401){navigate("/")
-            localStorage.setItem("token", "");}
+      else{
+        setAlertMsg(response.data.msg);
+          setShowAlert(true);
+        }
+      })
+      .catch(function (error) {
+        if(error.response.status == 401){navigate("/")
+        localStorage.setItem("token", "");}
+        setAlertMsg(error.response.data.msg);
+          setShowAlert(true);
       console.log(error);
     });
   }
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center">
       <Heading head={"Welcome " + props.name} />
@@ -40,6 +51,7 @@ if(error.response.status == 401){navigate("/")
         />
         <SubmitButton action="Continue" func={join}/>
       </div>
+      {showAlert && <Alert alertMsg={alertMsg} closeAlert={closeAlert} />}
     </div>
   );
 }

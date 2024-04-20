@@ -9,6 +9,8 @@ export default function UploadPhotoOG(props) {
   const [file, setFile] = useState();
   const [viewFile, setViewFile] = useState();
   const navigate = useNavigate();
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
   function onChange(e) {
     setUploaded(true);
     console.log(e);
@@ -43,13 +45,22 @@ export default function UploadPhotoOG(props) {
         if (response.data.success) {
           navigate("/basepage");
         }
+        else{
+          setAlertMsg(response.data.msg);
+          setShowAlert(true);
+        }
         console.log("image uploaded: ", response.data);
       })
       .catch((error) => {
+        setAlertMsg(error.Fileresponse.data.msg);
+        setShowAlert(true);
         console.error("Error uploading image:", error);
         // Handle error response if needed
       });
   }
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center">
       <Heading head={"Welcome " + props.name} />
@@ -122,6 +133,7 @@ export default function UploadPhotoOG(props) {
         </div>
         <SubmitButton action="Continue" func={onContinue} />
       </div>
+      {showAlert && <Alert alertMsg={alertMsg} closeAlert={closeAlert} />}
     </div>
   );
 }

@@ -12,6 +12,8 @@ export default function EventPage() {
   const [eventTime, setEventTime] = useState("");
   const [eventDetails, setEventDetails] = useState("");
   const [deleteId, setDeleteId] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
 
   const date = new Date();
 
@@ -25,15 +27,26 @@ export default function EventPage() {
         }
       )
       .then(function (response) {
-        console.log(response);
-        seteventData(response.data.events);
+        if (condition) {
+          
+          console.log(response);
+          seteventData(response.data.events);
+        } else {
+          setAlertMsg(response.data.msg);
+          setShowAlert(true);
+        }
       })
       .catch(function (error) {
-if(error.response.status == 401){navigate("/")
-            localStorage.setItem("token", "");}
+        if(error.response.status == 401){navigate("/")
+        localStorage.setItem("token", "");}
+        setAlertMsg(error.response.data.msg);
+        setShowAlert(true);
         console.log(error);
       });
   }, []);
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
 
   // const handleBoxClick = (id) => {
   //   const newWindow = window.open(
@@ -240,6 +253,7 @@ if(error.response.status == 401){navigate("/")
           </form>
         </div>
       )}
+      {showAlert && <Alert alertMsg={alertMsg} closeAlert={closeAlert} />}
     </div>
   );
 }

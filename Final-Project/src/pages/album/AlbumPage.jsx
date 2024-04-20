@@ -7,6 +7,8 @@ export default function AlbumPage() {
   const [albumData, setAlbumData] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [folderName, setFolderName] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
 const navigate = useNavigate();
   useEffect(() => {
     axios
@@ -14,12 +16,22 @@ const navigate = useNavigate();
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then(function (response) {
-        console.log(response);
-        setAlbumData(response.data.albums);
+        if (response.data.success) {
+          
+          console.log(response);
+          setAlbumData(response.data.albums);
+        }else{
+          setAlertMsg(response.data.msg);
+          setShowAlert(true);
+        }
+        
+
       })
       .catch(function (error) {
 if(error.response.status == 401){navigate("/")
             localStorage.setItem("token", "");}
+            setAlertMsg(erroe.response.data.msg);
+            setShowAlert(true);
         console.log(error);
       });
   }, []);
@@ -32,7 +44,9 @@ if(error.response.status == 401){navigate("/")
     //   "noopener,noreferrer"
     // );
   };
-
+const closeAlert = () => {
+    setShowAlert(false);
+  };
   const handleAddFolderClick = () => {
     setShowForm(true);
   };
@@ -115,6 +129,7 @@ if(error.response.status == 401){navigate("/")
           </form>
         </div>
       )}
+      {showAlert && <Alert alertMsg={alertMsg} closeAlert={closeAlert} />}
     </div>
   );
 }

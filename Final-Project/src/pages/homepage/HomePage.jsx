@@ -6,10 +6,13 @@ import { CiEdit } from "react-icons/ci";
 export default function HomePage() {
   const [familyName, setFamilyName] = useState("");
   const [familyHistory, setFamilyHistory] = useState("");
+  const [familyRef, setFamilyRef] = useState("");
   const [imageSRC, setImageSRC] = useState("");
   const [todayEventList, setTodayEventList] = useState();
   const [eventList, setEventList] = useState();
   const [showHomeEdit, setShowHomeEdit] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
   const date = new Date();
 
   useEffect(() => {
@@ -24,12 +27,19 @@ export default function HomePage() {
         if (response.data.success) {
           setFamilyName(response.data.home.name);
           setFamilyHistory(response.data.home.history);
+          setFamilyRef(response.data.home.ref);
           setImageSRC(response.data.home.image);
           localStorage.setItem("homeImage", response.data.home.image);
+        }
+        else{
+          setAlertMsg(response.data.msg);
+          setShowAlert(true);
         }
       })
       .catch((error) => {
         console.error("Error :", error);
+        setAlertMsg(error.response.data.msg);
+          setShowAlert(true);
         // Handle error response if needed
       });
 
@@ -42,16 +52,27 @@ export default function HomePage() {
         }
       )
       .then(function (response) {
-        console.log(response);
-        setTodayEventList(response.data.todayEvents);
-        setEventList(response.data.events);
+        if (response.data.success) {
+          
+          console.log(response);
+          setTodayEventList(response.data.todayEvents);
+          setEventList(response.data.events);
+        } else {
+          setAlertMsg(response.data.msg);
+          setShowAlert(true);
+        }
       })
       .catch(function (error) {
 if(error.response.status == 401){navigate("/")
             localStorage.setItem("token", "");}
+            setAlertMsg(error.response.data.msg);
+            setShowAlert(true);
         console.log(error);
       });
   }, []);
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
   function submitHomeChange() {
     axios
       .put(
@@ -119,6 +140,7 @@ if(error.response.status == 401){navigate("/")
             <div className=" h-auto font-semibold text-[44px] ml-[25px] font-IBM-Plex-Mono leading-none">
               {familyName}
             </div>
+            
             <div
               className="clickable h-min py-1 px-3 rounded-lg bg-[#67676733] font-IBM-Plex-Mono cursor-pointer"
               onClick={() => setShowHomeEdit(true)}
@@ -126,6 +148,9 @@ if(error.response.status == 401){navigate("/")
               EDIT
             </div>
           </div>
+          <div className=" h-auto font-semibold text-[24px] ml-[25px] mt-[15px] font-IBM-Plex-Mono leading-none">
+              Family Referral: {familyRef}
+            </div>
           <div className="w-full h-auto my-3  flex justify-start items-center ">
             <div className="bg-hover-element w-[85px] h-[85px] absolute bg-cover -z-10"></div>
             <div className="text-[28px] pl-[30px] font-IBM-Plex-Mono font-semibold text-black">
@@ -172,6 +197,7 @@ if(error.response.status == 401){navigate("/")
           </div>
         </div>
       </div>
+      {showAlert && <Alert alertMsg={alertMsg} closeAlert={closeAlert} />}
     </div>
   );
 }
