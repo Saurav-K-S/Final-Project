@@ -10,7 +10,7 @@ export default function AlbumPage() {
 const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("https://ancestree-backend.onrender.com/api/v1/family/album/view", {
+      .get("https://ancestree-backend-cew7.onrender.com/api/v1/family/album/view", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then(function (response) {
@@ -40,7 +40,7 @@ const navigate = useNavigate();
     e.preventDefault();
     // Send axios request with folderName
     axios
-      .post("https://ancestree-backend.onrender.com/api/v1/family/album/create", { name: folderName}, {
+      .post("https://ancestree-backend-cew7.onrender.com/api/v1/family/album/create", { name: folderName}, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then(function (response) {

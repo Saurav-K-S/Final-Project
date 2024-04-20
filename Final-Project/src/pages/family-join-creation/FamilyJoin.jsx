@@ -10,7 +10,7 @@ export default function FamilyJoin(props) {
   const navigate = useNavigate();
 
   function join() {
-    axios.put("https://ancestree-backend.onrender.com/api/v1/user/refUpdate",{ref:refID},{
+    axios.put("https://ancestree-backend-cew7.onrender.com/api/v1/user/refUpdate",{ref:refID},{
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     }).then(function (response) {
       console.log(response)

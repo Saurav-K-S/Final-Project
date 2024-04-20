@@ -2,17 +2,32 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Tree from "react-d3-tree";
 import { format, differenceInYears } from "date-fns";
-import TextField from "../../components/TextField";
+import { CiPhone } from "react-icons/ci";
 
 const formatDate = (dateString) => {
+  if (dateString==null) {
+    return""
+  }
   const date = new Date(dateString);
   return format(date, "dd/MM/yyyy");
 };
 
-const calculateAge = (dateString) => {
-  const birthDate = new Date(dateString);
-  const age = differenceInYears(new Date(), birthDate);
-  return age;
+const calculateAge = (dateString0,dateString1) => {
+  if (dateString0==null) {
+    return ""
+  }
+  if (dateString1==null) {
+    
+    const birthDate = new Date(dateString0);
+    const age = differenceInYears(new Date(), birthDate);
+    return age.toString();
+  }else{
+    const birthDate0 = new Date(dateString0);
+    const birthDate1 = new Date(dateString1);
+    const age = differenceInYears(birthDate1, birthDate0);
+    return age.toString();
+    
+  }
 };
 
 let orgChart = {
@@ -94,6 +109,8 @@ const renderCustomNode = (
           birthOrder: response.data.member.birthOrder,
           father: response.data.member.father,
           dob: response.data.member.dob,
+          dod: response.data.member.dod,
+          bloodGroup: response.data.member.bloodGroup,
           WmobileNumber: response.data.member.WmobileNumber,
           spouse: response.data.member.spouse,
           occupation: response.data.member.occupation,
@@ -111,10 +128,31 @@ const renderCustomNode = (
         r={35}
         className="fill-[#FFEEB2] stroke-black stroke-[0.2px]"
         // onClick={() => toggleNode()}
-        onClick={renderDiv}
+        onClick={toggleNode}
         // onDoubleClick={ }
       />
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"></svg>
+      <rect
+        x={33}
+        y={-53  }
+        width={95}
+        // width="160"
+        height="30"
+        rx="18"
+        ry="18"
+        fill="#FEFFDD"
+        className="z-50 stroke-current stroke-[0.5px]"
+        onClick={renderDiv}
+      />
+      <text
+        x={45}
+        y={-35}
+        fill="#000000"
+        className="font-IBM-Plex-Mono font-medium text-[10px] stroke-[0.8px]"
+        onClick={renderDiv}
+      >
+        Show Details
+      </text>
       <rect
         x={33}
         y={2}
@@ -163,6 +201,9 @@ export default function TreePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [showCard, setShowCard] = useState(false);
+  const [showSearchName, setShowSearchName] = useState(false);
+  const [searchName, setSearchName] = useState("");
+  const [nameList, setNameList] = useState([]);
   const [memberSearch, setMemberSearch] = useState();
   const [memberDetails, setMemberDetails] = useState({
     self: true,
@@ -171,6 +212,8 @@ export default function TreePage() {
     email: "",
     parentId: "",
     dob: "",
+    dod: "",
+    bloodGroup: "",
     alterMobileNumber: "",
     spouse: "",
     father: "",
@@ -186,6 +229,8 @@ export default function TreePage() {
     birthOrder: null,
     father: "",
     dob: "",
+    dod: "",
+    bloodGroup: "",
     WmobileNumber: "",
     spouse: null,
     occupation: "",
@@ -300,6 +345,28 @@ export default function TreePage() {
         // Handle error response if needed
       });
   }
+
+  function searchMemberName() {
+    axios
+      .post(
+        "https://ancestree-backend.onrender.com/api/v1/member/search/pattern",
+        { pattern: searchName },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        if (response.data.success) {
+          setNameList(response.data.memberList);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
   return (
     <div id="treeWrapper" className="h-screen border-line">
       <div className="fixed top-[5%] right-[3%] flex items-end justify-end">
@@ -310,7 +377,7 @@ export default function TreePage() {
           <div>
             <input
               onChange={(e) => setMemberSearch(e.target.value)}
-              className="bg-[#FEFFDD] cursor-none border-[0.1px] border-black border-dashed rounded-[18px] w-[380px]  h-[52px] p-3 mt-[9px]"
+              className="bg-[#FEFFDD] border-[0.1px] border-black border-dashed rounded-[18px] w-[380px]  h-[52px] p-3 mt-[9px]"
               type="text"
             />
           </div>
@@ -333,13 +400,14 @@ export default function TreePage() {
         </div>
       </div>
       <Tree
-        collapsible={false}
+        collapsible={true}
         translate={{ x: 525, y: 200 }}
         data={chartData}
-        pathFunc={"diagonal"}
+        pathFunc={"step"}
         orientation="vertical"
         separation={{ siblings: 2, nonSiblings: 2 }}
-        initialDepth={99}
+        initialDepth={0}
+        depthFactor={300 }
         enableLegacyTransitions={true}
         renderCustomNodeElement={(rd3tProps) =>
           renderCustomNode(
@@ -372,7 +440,7 @@ export default function TreePage() {
                 EDIT
               </div>
               <div
-                className="h-min py-1 px-3 rounded-lg bg-black text-white"
+                className="h-min py-1 px-3 rounded-lg bg-black text-white cursor-pointer"
                 onClick={() => setShowCard(false)}
               >
                 CLOSE
@@ -402,7 +470,7 @@ export default function TreePage() {
             <div className="w-max px-3 py-2  mt-3 rounded-lg flex flex-col justify-center items-start">
               <div className="text-[#676767]">Age:</div>
               <div className="font-semibold">
-                {calculateAge(displayMember.dob)}
+                {calculateAge(displayMember.dob,displayMember.dod)}
               </div>
             </div>
             <div className="w-max px-3 py-2  rounded-lg flex flex-col justify-center items-start">
@@ -416,6 +484,14 @@ export default function TreePage() {
             <div className="w-max px-3 py-2  rounded-lg flex flex-col justify-center items-start">
               <div className="text-[#676767]">Occupation</div>
               <div className="font-semibold">{displayMember.occupation}</div>
+            </div>
+            <div className="w-max px-3 py-2  rounded-lg flex flex-col justify-center items-start">
+              <div className="text-[#676767]">Date of Death</div>
+              <div className="font-semibold">{formatDate(displayMember.dod) }</div>
+            </div>
+            <div className="w-max px-3 py-2  rounded-lg flex flex-col justify-center items-start">
+              <div className="text-[#676767]">Blood Group</div>
+              <div className="font-semibold">{displayMember.bloodGroup}</div>
             </div>
             <div className="w-max px-3 py-2  mt-3 rounded-lg flex flex-col justify-center items-start">
               <div className="text-[#676767] w-min">Number of Children:</div>
@@ -518,9 +594,41 @@ export default function TreePage() {
                   setMemberDetails({
                     ...memberDetails,
                     dob: e.target.value,
-                  })
+                  },
+                console.log(e.target.value))
                 }
                 placeholder="Enter Date Of Birth"
+                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+              />
+            </label>
+                <label className="block mb-4">
+                  Date Of Death:
+                  <input
+                    type="text"
+                    value={memberDetails.dod}
+                    onChange={(e) =>
+                      setMemberDetails({
+                        ...memberDetails,
+                        dod: e.target.value,
+                      },
+                      console.log(e.target.value))
+                    }
+                    placeholder="Enter Date Of Death"
+                    className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                  />
+                </label>
+            <label className="block mb-4">
+              Blood Group:
+              <input
+                type="text"
+                value={memberDetails.bloodGroup}
+                onChange={(e) =>
+                  setMemberDetails({
+                    ...memberDetails,
+                    bloodGroup: e.target.value,
+                  })
+                }
+                placeholder="Enter the Blood group"
                 className="block w-full mb-4 border border-gray-300 p-2 rounded"
               />
             </label>
@@ -795,13 +903,68 @@ export default function TreePage() {
           </div>
         </div>
       )}
+      {showSearchName && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
+          <div className="w-full h-[90%] mx-60  bg-[#FFEEB2] font-IBM-Plex-Mono p-8 rounded-lg overflow-y-scroll scrollbar-none">
+            <h2 className="text-2xl font-bold mb-4">Search Member by Name:</h2>
+            {/* Form inputs */}
 
-      <button
-        onClick={() => setIsModalOpen(true)}
-        className="clickable fixed text-[20px] px-10 bottom-4 right-4 bg-[#FFEEB2] font-semibold shadow-inner text-black font-IBM-Plex-Mono py-2 rounded-3xl hover:[#FFE072]"
-      >
-        Add Member
-      </button>
+            <label className="block mb-4">
+              Name:
+              <input
+                type="text"
+                value={searchName}
+                onChange={(e) => setSearchName(e.target.value)}
+                placeholder="Enter Name"
+                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+              />
+            </label>
+            <div className="grid grid-cols-2 gap-x-3 gap-y-2">
+
+            {nameList.map((nameData, index) => (
+              <div className="py-4 mb-3 px-4 w-full flex flex-col justify-center items-center border-[1px] border-black border-dashed rounded-3xl">
+                <div className="w-full flex justify-between items-center">
+                  <div>{nameData.name}</div>
+                  <div className="bg-[#CCFFE0] text-[#3C8B5C] rounded-[9px] px-5">{nameData.memberId}</div>
+                </div>
+                <div className="mt-2 w-full flex justify-end items-center">
+                  
+                  <div className="flex items-center"><CiPhone  size={20} />{nameData.WmobileNumber}</div>
+                </div>
+              </div>
+            ))}
+            </div>
+            <div className="flex justify-between">
+              <button
+                onClick={() => searchMemberName()}
+                className="bg-[#FFE072] text-black px-4 py-2 rounded hover:bg-[#FFE072]"
+              >
+                Submit
+              </button>
+              <button
+                onClick={() => setShowSearchName(false)}
+                className="bg-black text-white px-4 py-2 rounded hover:bg-red-600"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      <div className="fixed text-[20px] bottom-4 right-4 font-semibold  text-black font-IBM-Plex-Mono flex flex-col">
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="clickable px-10 py-2 rounded-3xl hover:[#FFE072] shadow-inner bg-[#FFEEB2] "
+        >
+          Add Member
+        </button>
+        <button
+          onClick={() => setShowSearchName(true)}
+          className="clickable px-10 py-2 rounded-3xl hover:[#FFE072] shadow-inner bg-[#FFEEB2] mt-5"
+        >
+          Search Member
+        </button>
+      </div>
     </div>
   );
 }

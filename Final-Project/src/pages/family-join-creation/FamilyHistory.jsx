@@ -7,7 +7,7 @@ export default function FamilyHistory(props) {
   const [history, setHistory] = useState("");
 
   function cont() {
-    axios.post("https://ancestree-backend.onrender.com/api/v1/family/create",{name:props.familyName,
+    axios.post("https://ancestree-backend-cew7.onrender.com/api/v1/family/create",{name:props.familyName,
     history:history},{
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     }).then(function (response) {

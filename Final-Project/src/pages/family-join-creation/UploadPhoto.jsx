@@ -30,7 +30,7 @@ export default function UploadPhotoOG(props) {
     console.log(formData);
     axios
       .post(
-        "https://ancestree-backend.onrender.com/api/v1/family/upload",
+        "https://ancestree-backend-cew7.onrender.com/api/v1/family/upload",
         formData,
         {
           headers: {
@@ -159,7 +159,7 @@ export default function UploadPhotoOG(props) {
 //     const formData = new FormData();
 //     formData.append("image",images[0].data_url)
 //     console.log(formData)
-//     axios.post("https://ancestree-backend.onrender.com/api/v1/family/upload",formData,{
+//     axios.post("https://ancestree-backend-cew7.onrender.com/api/v1/family/upload",formData,{
 //       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` , "Content-Type": "multipart/form-data"},
 //     }).then(response=>{
 //       console.log("image uploaded: ", response.data)

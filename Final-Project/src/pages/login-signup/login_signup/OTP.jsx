@@ -16,7 +16,7 @@ export default function OTP(props) {
   function Register() {
     if (props.otpOGVal == otp) {
       axios
-        .post("https://ancestree-backend.onrender.com/api/v1/user/create", {
+        .post("https://ancestree-backend-cew7.onrender.com/api/v1/user/create", {
           mobileNumber: Number(props.numberValue),
           email: props.emailValue,
           name: props.nameValue,

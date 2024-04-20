@@ -18,7 +18,7 @@ export default function EventPage() {
   useEffect(() => {
     axios
       .get(
-        "https://ancestree-backend.onrender.com/api/v1/family/event/view/" +
+        "https://ancestree-backend-cew7.onrender.com/api/v1/family/event/view/" +
           `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -50,7 +50,7 @@ export default function EventPage() {
     // Send axios request with folderName
     axios
       .post(
-        "https://ancestree-backend.onrender.com/api/v1/family/event/create",
+        "https://ancestree-backend-cew7.onrender.com/api/v1/family/event/create",
         {
           name: eventName,
           place: eventPlace,
@@ -75,7 +75,7 @@ export default function EventPage() {
   function deleteEvent(id) {
     axios
       .delete(
-        "https://ancestree-backend.onrender.com/api/v1/family/event/delete/" +
+        "https://ancestree-backend-cew7.onrender.com/api/v1/family/event/delete/" +
           id,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

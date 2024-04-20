@@ -15,7 +15,7 @@ export default function Photos() {
     console.log(id);
     axios
       .get(
-        "https://ancestree-backend.onrender.com/api/v1/family/album/view/" + id,
+        "https://ancestree-backend-cew7.onrender.com/api/v1/family/album/view/" + id,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
@@ -49,7 +49,7 @@ export default function Photos() {
     console.log(formData);
     axios
       .post(
-        "https://ancestree-backend.onrender.com/api/v1/family/album/upload/" +
+        "https://ancestree-backend-cew7.onrender.com/api/v1/family/album/upload/" +
           id,
         formData,
         {
