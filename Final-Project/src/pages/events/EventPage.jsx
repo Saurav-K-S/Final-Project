@@ -29,6 +29,8 @@ export default function EventPage() {
         seteventData(response.data.events);
       })
       .catch(function (error) {
+if(error.response.status == 401){navigate("/")
+            localStorage.setItem("token", "");}
         console.log(error);
       });
   }, []);
@@ -68,6 +70,8 @@ export default function EventPage() {
         setShowForm(false);
       })
       .catch(function (error) {
+if(error.response.status == 401){navigate("/")
+            localStorage.setItem("token", "");}
         console.log(error);
       });
   };
@@ -87,6 +91,8 @@ export default function EventPage() {
         setShowDeleteConf(false);
       })
       .catch(function (error) {
+if(error.response.status == 401){navigate("/")
+            localStorage.setItem("token", "");}
         console.log(error);
       });
   }

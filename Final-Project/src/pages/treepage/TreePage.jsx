@@ -118,6 +118,8 @@ const renderCustomNode = (
         });
       })
       .catch(function (error) {
+if(error.response.status == 401){navigate("/")
+            localStorage.setItem("token", "");}
         console.log(error);
       });
   }
@@ -323,6 +325,8 @@ export default function TreePage() {
         setChartData(response.data.memberPath);
       })
       .catch(function (error) {
+if(error.response.status == 401){navigate("/")
+            localStorage.setItem("token", "");}
         console.log(error);
       });
   }

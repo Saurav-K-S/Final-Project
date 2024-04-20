@@ -49,6 +49,10 @@ export default function Login(props) {
         }
       })
       .catch(function (error) {
+        if (error.response.status == 401) {
+          navigate("/");
+          localStorage.setItem("token", "");
+        }
         console.log(error);
         setAlertMsg(error.response.data.msg);
         setShowAlert(true);

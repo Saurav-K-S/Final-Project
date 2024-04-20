@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {  CiPhone } from "react-icons/ci";
+import { CiPhone } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const [name, setName] = useState();
@@ -11,6 +12,8 @@ export default function Profile() {
   const [uploaded, setUploaded] = useState(false);
   const [file, setFile] = useState();
   const [viewFile, setViewFile] = useState();
+  const navigate = useNavigate();
+
   useEffect(() => {
     axios
       .get("https://ancestree-backend.onrender.com/api/v1/user/view", {
@@ -129,29 +132,30 @@ export default function Profile() {
                         : " -z-2 absolute w-[375px] h-[185px] hidden"
                     }
                   >
-                    <img 
-                    src={viewFile}
-                    // src="https://drive.google.com/thumbnail?id=1gve52txpLoVqQS7zHhEzMNHkIQCHFc4i&sz=w1000"
-                     />
+                    <img
+                      src={viewFile}
+                      // src="https://drive.google.com/thumbnail?id=1gve52txpLoVqQS7zHhEzMNHkIQCHFc4i&sz=w1000"
+                    />
                   </div>
                 </div>
               </div>
             </label>
             <div className="flex justify-between mt-10">
-            <div className={uploaded ? "block" : "hidden"}>
-              <div
-                className="clickable bg-red text-black px-4 py-2 rounded hover:bg-[#FFE072] border border-black cursor-pointer"
-                onClick={() => {
-                  onContinue();
-                }}
-              >
-                Submit
+              <div className={uploaded ? "block" : "hidden"}>
+                <div
+                  className="clickable bg-red text-black px-4 py-2 rounded hover:bg-[#FFE072] border border-black cursor-pointer"
+                  onClick={() => {
+                    onContinue();
+                  }}
+                >
+                  Submit
+                </div>
               </div>
-              
-            </div>
               <div
                 className="clickable bg-black text-white px-4 py-2 rounded hover:bg-red-600 cursor-pointer"
-                onClick={() => {onRemove(),setImageEdit(false)}}
+                onClick={() => {
+                  onRemove(), setImageEdit(false);
+                }}
               >
                 Close
               </div>
@@ -186,26 +190,37 @@ export default function Profile() {
           EDIT PHOTO
         </div>
       </div>
-      <div className="mt-3 w-full flex flex-row justify-between items-center">
-        <div>
-          <div className="w-auto font-semibold text-[32px] font-IBM-Plex-Mono">
-            {name}
+      <div className="flex flex-col">
+        <div className="mt-3 w-full flex flex-row justify-between items-center">
+          <div>
+            <div className="w-auto font-semibold text-[32px] font-IBM-Plex-Mono">
+              {name}
+            </div>
+            <div className="text-[24px] font-IBM-Plex-Mono text-[#676767]  mt-11">
+              {email}
+            </div>
           </div>
-          <div className="text-[24px] font-IBM-Plex-Mono text-[#676767]  mt-11">
-            {email}
+          <div className="w-max flex flex-col justify-end items-end pr-14">
+            <div className="w-max h-auto text-[24px] font-IBM-Plex-Mono bg-[#CCFFE0] text-[#3C8B5C] rounded-[9px] px-5">
+              {id}
+            </div>
+
+            <div className="w-max text-[30px] flex items-center font-IBM-Plex-Mono  mt-11">
+              <div>
+                <CiPhone size={30} />
+              </div>
+              <div>{number}</div>
+            </div>
           </div>
         </div>
-        <div className="w-max flex flex-col justify-end items-end pr-14">
-          <div className="w-max h-auto text-[24px] font-IBM-Plex-Mono bg-[#CCFFE0] text-[#3C8B5C] rounded-[9px] px-5">
-            {id}
-          </div>
-
-          <div className="w-max text-[30px] flex items-center font-IBM-Plex-Mono  mt-11">
-            <div>
-              <CiPhone size={30} />
-            </div>
-            <div>{number}</div>
-          </div>
+        <div
+          className="w-max text-[30px] flex justify-center items-center font-IBM-Plex-Mono border-black border-[0.3px] px-5 rounded-xl bg-[#FFEEB2] mt-11"
+          onClick={() => {
+            navigate("/")
+            localStorage.setItem("token", "");
+          }}
+        >
+          Logout
         </div>
       </div>
     </div>

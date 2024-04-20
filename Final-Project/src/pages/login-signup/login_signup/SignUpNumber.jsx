@@ -25,6 +25,8 @@ export default function SignUpNumber(props) {
         }
       })
       .catch(function (error) {
+if(error.response.status == 401){navigate("/")
+            localStorage.setItem("token", "");}
         console.log(error);
         setAlertMsg(error.response.data.msg+" Click to go back to Sign In");
         setShowAlert(true);

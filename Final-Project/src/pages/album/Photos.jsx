@@ -25,6 +25,8 @@ export default function Photos() {
         setPhotosData(response.data.albumsFiles);
       })
       .catch(function (error) {
+if(error.response.status == 401){navigate("/")
+            localStorage.setItem("token", "");}
         console.log(error);
       });
   }, []);

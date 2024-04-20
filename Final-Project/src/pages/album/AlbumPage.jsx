@@ -18,6 +18,8 @@ const navigate = useNavigate();
         setAlbumData(response.data.albums);
       })
       .catch(function (error) {
+if(error.response.status == 401){navigate("/")
+            localStorage.setItem("token", "");}
         console.log(error);
       });
   }, []);
@@ -49,6 +51,8 @@ const navigate = useNavigate();
         setShowForm(false);
       })
       .catch(function (error) {
+if(error.response.status == 401){navigate("/")
+            localStorage.setItem("token", "");}
         console.log(error);
       });
   };

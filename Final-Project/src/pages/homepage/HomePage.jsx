@@ -47,6 +47,8 @@ export default function HomePage() {
         setEventList(response.data.events);
       })
       .catch(function (error) {
+if(error.response.status == 401){navigate("/")
+            localStorage.setItem("token", "");}
         console.log(error);
       });
   }, []);
@@ -65,6 +67,8 @@ export default function HomePage() {
         setShowHomeEdit(false);
       })
       .catch(function (error) {
+if(error.response.status == 401){navigate("/")
+            localStorage.setItem("token", "");}
         console.log(error);
       });
   }

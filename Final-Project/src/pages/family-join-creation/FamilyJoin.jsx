@@ -21,6 +21,8 @@ export default function FamilyJoin(props) {
       }
     })
     .catch(function (error) {
+if(error.response.status == 401){navigate("/")
+            localStorage.setItem("token", "");}
       console.log(error);
     });
   }
