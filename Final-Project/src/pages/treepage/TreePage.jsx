@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import Tree from "react-d3-tree";
 import { format, differenceInYears } from "date-fns";
 import { CiPhone } from "react-icons/ci";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const formatDate = (dateString) => {
   if (dateString==null) {
@@ -10,6 +12,17 @@ const formatDate = (dateString) => {
   }
   const date = new Date(dateString);
   return format(date, "dd/MM/yyyy");
+};
+
+const formatDateFn = (date) => {
+  const selectedDate = new Date(date);
+  return (
+    selectedDate.getFullYear() +
+    "-" +
+    parseInt(selectedDate.getMonth() + 1) +
+    "-" +
+    selectedDate.getDate()
+  );
 };
 
 const calculateAge = (dateString0,dateString1) => {
@@ -590,41 +603,34 @@ if(error.response.status == 401){navigate("/")
               />
             </label>
             <label className="block mb-4">
-              Date Of Birth:
-              <input
-                type="text"
-                value={memberDetails.dob}
-                onChange={(e) =>
-                  setMemberDetails({
-                    ...memberDetails,
-                    dob: e.target.value,
-                  },
-                console.log(e.target.value))
-                }
-                placeholder="Enter Date Of Birth"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+              Date Of Birth:<br />
+              <DatePicker
+                className="border rounded-md w-[210%] h-10 mt-1 pl-2"
+                selected={memberDetails.dob}
+                onChange={(date) => {
+                  setMemberDetails({...memberDetails,dob:formatDateFn(date)})
+                  
+                  console.log(memberDetails.dob);
+                }}
+                dateFormat="YYYY-MM-dd"
               />
             </label>
                 <label className="block mb-4">
-                  Date Of Death:
-                  <input
-                    type="text"
-                    value={memberDetails.dod}
-                    onChange={(e) =>
-                      setMemberDetails({
-                        ...memberDetails,
-                        dod: e.target.value,
-                      },
-                      console.log(e.target.value))
-                    }
-                    placeholder="Enter Date Of Death"
-                    className="block w-full mb-4 border border-gray-300 p-2 rounded"
-                  />
+                  Date Of Death: <br />
+                  <DatePicker
+                className="border rounded-md w-[210%] h-10 mt-1 pl-2"
+                selected={memberDetails.dod}
+                onChange={(date) => {
+                  setMemberDetails({...memberDetails,dod:formatDateFn(date)})
+                  
+                  console.log(memberDetails.dod);
+                }}
+                dateFormat="YYYY-MM-dd"
+              />
                 </label>
             <label className="block mb-4">
               Blood Group:
-              <input
-                type="text"
+              <select
                 value={memberDetails.bloodGroup}
                 onChange={(e) =>
                   setMemberDetails({
@@ -632,9 +638,18 @@ if(error.response.status == 401){navigate("/")
                     bloodGroup: e.target.value,
                   })
                 }
-                placeholder="Enter the Blood group"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
-              />
+                className="block w-full border border-gray-300 p-2 rounded"
+                placeholder="Enter The Blood Group"
+              >
+                <option value="A+">A +ve</option>
+                <option value="A-">A -ve</option>
+                <option value="B+">B +ve</option>
+                <option value="B-">B -ve</option>
+                <option value="AB+">AB +ve</option>
+                <option value="AB-">AB -ve</option>
+                <option value="O+">O +ve</option>
+                <option value="O-">O -ve</option>
+              </select>
             </label>
             <label className="block mb-4">
               Alternate Mobile:
@@ -800,7 +815,7 @@ if(error.response.status == 401){navigate("/")
               Date Of Birth:
               <input
                 type="text"
-                value={memberDetails.dob}
+                value={formatDate(displayMember.dob)}
                 onChange={(e) =>
                   setMemberDetails({
                     ...memberDetails,
@@ -877,7 +892,8 @@ if(error.response.status == 401){navigate("/")
               Number of Children:
               <input
                 type="number"
-                value={memberDetails.noOfChildren}
+                value={displayMember.noOfChildren}
+                
                 onChange={(e) =>
                   setMemberDetails({
                     ...memberDetails,

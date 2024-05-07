@@ -1,6 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import TimePicker from "react-time-picker";
 import { CiCirclePlus } from "react-icons/ci";
+import { format } from "date-fns";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import 'react-time-picker/dist/TimePicker.css';
 
 export default function EventPage() {
   const [eventData, seteventData] = useState([]);
@@ -14,9 +20,26 @@ export default function EventPage() {
   const [deleteId, setDeleteId] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
+  const navigate = useNavigate();
 
   const date = new Date();
-
+  const formatDate = (dateString) => {
+    if (dateString == null) {
+      return "";
+    }
+    const date = new Date(dateString);
+    return format(date, "dd/MM/yyyy");
+  };
+  const formatDateFn = (date) => {
+    const selectedDate = new Date(date);
+    return (
+      selectedDate.getFullYear() +
+      "-" +
+      parseInt(selectedDate.getMonth() + 1) +
+      "-" +
+      selectedDate.getDate()
+    );
+  };
   useEffect(() => {
     axios
       .get(
@@ -27,18 +50,22 @@ export default function EventPage() {
         }
       )
       .then(function (response) {
-        if (condition) {
-          
-          console.log(response);
+        console.log(response);
+        if (response.data.success) {
           seteventData(response.data.events);
+          console.log("LAAAAAAAAAAAAAAAAAAAA" + eventData);
         } else {
           setAlertMsg(response.data.msg);
           setShowAlert(true);
         }
       })
       .catch(function (error) {
-        if(error.response.status == 401){navigate("/")
-        localStorage.setItem("token", "");}
+        if (!error.response.data.status) {
+          if (error.response.status == 401) {
+            navigate("/");
+            localStorage.setItem("token", "");
+          }
+        }
         setAlertMsg(error.response.data.msg);
         setShowAlert(true);
         console.log(error);
@@ -83,8 +110,10 @@ export default function EventPage() {
         setShowForm(false);
       })
       .catch(function (error) {
-if(error.response.status == 401){navigate("/")
-            localStorage.setItem("token", "");}
+        if (error.response.status == 401) {
+          navigate("/");
+          localStorage.setItem("token", "");
+        }
         console.log(error);
       });
   };
@@ -104,8 +133,10 @@ if(error.response.status == 401){navigate("/")
         setShowDeleteConf(false);
       })
       .catch(function (error) {
-if(error.response.status == 401){navigate("/")
-            localStorage.setItem("token", "");}
+        if (error.response.status == 401) {
+          navigate("/");
+          localStorage.setItem("token", "");
+        }
         console.log(error);
       });
   }
@@ -116,7 +147,7 @@ if(error.response.status == 401){navigate("/")
         {eventData.map((boxData, index) => (
           <div
             key={index}
-            className="w-[430px] h-[200px] flex flex-col justify-start pt-5 items-start rounded-[12px] border-[0.1px] border-black  cursor-pointer"
+            className="w-[430px] h-[200px] flex flex-col justify-start pt-5 items-start rounded-[12px] border-[0.1px] border-black  cursor-pointer overflow-y-scroll scrollbar-thumb-rounded-sm scrollbar-track-transparent scrollbar scrollbar-thumb-[#FFEEB2]"
             // onClick={() => handleBoxClick(boxData.id)}
           >
             <div className="w-full px-7 flex flex-row justify-between items-center">
@@ -138,7 +169,7 @@ if(error.response.status == 401){navigate("/")
               </div>
             </div>
             <div className="font-IBM-Plex-Mono text-[#676767] px-7 pt-5">
-              {boxData.date}
+              {formatDate(boxData.date)}
             </div>
             <div className="font-IBM-Plex-Mono px-7 pt-5">
               {boxData.details}
@@ -157,15 +188,15 @@ if(error.response.status == 401){navigate("/")
       </div>
       {showDeleteConf && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-          <form
-            className="bg-[#FFEEB2] p-8 rounded-lg shadow-lg"
-          >
+          <form className="bg-[#FFEEB2] p-8 rounded-lg shadow-lg">
             <label className="block mb-4 font-IBM-Plex-Mono font-semibold">
               Are you sure you want to delete the event?
               <div className="flex justify-between mt-3">
                 <div
                   className="bg-red text-black px-4 py-2 rounded hover:bg-[#FFE072] border border-black cursor-pointer"
-                  onClick={() => {deleteEvent(deleteId)}}
+                  onClick={() => {
+                    deleteEvent(deleteId);
+                  }}
                 >
                   Delete
                 </div>
@@ -207,24 +238,41 @@ if(error.response.status == 401){navigate("/")
               />
             </label>
             <label className="block mb-4 font-IBM-Plex-Mono font-semibold">
-              Event Date:
-              <input
+              Event Date: <br />
+              <DatePicker
+                className="border rounded-md w-[165%] h-10 mt-1 pl-2"
+                selected={eventDate}
+                onChange={(date) => {
+                  setEventDate(formatDateFn(date));
+                  console.log(eventDate);
+                  console.log(eventTime);
+                }}
+                dateFormat="YYYY-MM-dd"
+              />
+              {/* <input
                 type="text"
                 value={eventDate}
                 onChange={(e) => setEventDate(e.target.value)}
                 className="border rounded-md w-full h-10 mt-1 pl-2"
                 required
-              />
+              /> */}
             </label>
             <label className="block mb-4 font-IBM-Plex-Mono font-semibold">
               Event Time:
-              <input
+              <TimePicker
+                // className="border rounded-md w-full h-10 mt-1 pl-2"
+                onChange={setEventTime}
+                value={eventTime}
+                disableClock="false"
+
+              />
+              {/* <input
                 type="text"
                 value={eventTime}
                 onChange={(e) => setEventTime(e.target.value)}
                 className="border rounded-md w-full h-10 mt-1 pl-2"
                 required
-              />
+              /> */}
             </label>
             <label className="block mb-4 font-IBM-Plex-Mono font-semibold">
               Event Details:

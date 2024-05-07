@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { CiEdit } from "react-icons/ci";
+import { format } from "date-fns";
 
 export default function HomePage() {
   const [familyName, setFamilyName] = useState("");
@@ -14,7 +14,13 @@ export default function HomePage() {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
   const date = new Date();
-
+  const formatDate = (dateString) => {
+    if (dateString==null) {
+      return""
+    }
+    const date = new Date(dateString);
+    return format(date, "dd/MM/yyyy");
+  };
   useEffect(() => {
     axios
       .get("https://ancestree-backend.onrender.com/api/v1/family/home", {
@@ -161,17 +167,17 @@ if(error.response.status == 401){navigate("/")
             {familyHistory}
           </div>
         </div>
-        <div className="w-[20%] ml-10 h-[70%] mr-16  border-dashed border-black border-[0.6px] rounded-[18px] flex flex-col px-10 justify-start items-center">
-          <div className="w-[190px] h-[60px] text-[24px] font-IBM-Plex-Mono font-semibold mt-6">
+        <div className="w-[30%] ml-10 h-[70%] mr-16  border-dashed border-black border-[0.6px] rounded-[18px] flex flex-col justify-start items-center">
+          <div className="text-[24px] font-IBM-Plex-Mono font-semibold mt-6">
             Notifications
           </div>
-          <div className="h-[380px] flex flex-col justify-start items-start  scrollbar-thumb-rounded-sm scrollbar-track-transparent scrollbar scrollbar-thumb-[#FFEEB2] overflow-y-scroll">
-              <div className="font-IBM-Plex-Mono  text-[11px] text-[#656565]">
+          <div className="h-[380px] w-auto flex flex-col px-4 justify-start items-start  scrollbar-thumb-rounded-sm scrollbar-track-transparent scrollbar scrollbar-thumb-[#FFEEB2] overflow-y-scroll">
+              <div className="w-max font-IBM-Plex-Mono  text-[11px] text-[#656565] ">
                 Today
-              </div>
+              </div > 
               {todayEventList &&
                 todayEventList.map((eventData, index) => (
-                  <div>
+                  <div className="border-dashed border-black border-[0.6px] rounded-[9px]">
                     <div className="font-IBM-Plex-Mono text-[16px] text-[#2D2D2D]">
                       {eventData.name}
                     </div>
@@ -185,12 +191,12 @@ if(error.response.status == 401){navigate("/")
               </div>
               {eventList &&
                 eventList.map((eventData, index) => (
-                  <div>
+                  <div className="border-dashed border-black border-[0.6px] rounded-[9px] mt-4 p-2">
                     <div className="font-IBM-Plex-Mono text-[16px] text-[#2D2D2D]">
                       {eventData.name}
                     </div>
                     <div className="font-IBM-Plex-Mono text-[11px] text-[#656565]">
-                      {eventData.details} scheduled for {eventData.date}
+                      {eventData.details} scheduled for {formatDate(eventData.date)}
                     </div>
                   </div>
                 ))}
