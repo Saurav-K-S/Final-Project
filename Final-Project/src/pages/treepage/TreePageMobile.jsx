@@ -132,10 +132,10 @@ export default function TreePageMobile() {
   }, []);
 
   return (
-    <div id="treeWrapper" className="h-scree w-screen flex justify-center items-center border-line">
+    <div id="treeWrapper" className="h-screen w-screen flex justify-center items-center border-line">
       <Tree
         collapsible={true}
-        // translate={{ x: 100, y: 200 }}
+        translate={{ x: screen.width/2, y: 200 }}
         data={chartData}
         pathFunc={"step"}
         orientation="vertical"
