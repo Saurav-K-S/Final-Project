@@ -252,6 +252,7 @@ export default function TreePage() {
     noOfChildren: 0,
   });
   useEffect(() => {
+    console.log(localStorage.getItem("token"))
     axios
       .get("https://ancestree-backend.onrender.com/api/v1/family/tree", {
         headers: {

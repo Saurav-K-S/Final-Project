@@ -8,6 +8,7 @@ import FamilyJoinCreation from "./pages/family-join-creation/FamilyJoinCreation"
 import UploadPhotoOG from "./pages/family-join-creation/UploadPhotoOG";
 import Onboarding from "./onboarding/Onboarding";
 import Photos from "./pages/album/Photos";
+import TreePageMobile from "./pages/treepage/TreePageMobile";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/basepage" element={<BasePage/>} />   
+        <Route path="/treepageiframe/:userId" element={<TreePageMobile/>} />   
         <Route path="/familyjoincreation" element={<FamilyJoinCreation/>} />   
         <Route path="/upload" element={<UploadPhotoOG/>} />   
         <Route path="/forgotpassword" element={<ForgotPassword/>} /> 
