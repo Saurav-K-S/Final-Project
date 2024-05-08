@@ -11,7 +11,7 @@ export default function ForgotPasswordNumber(props) {
   function Submit() {
     axios
       .post("https://ancestree-backend.onrender.com/api/v1/user/forgot", {
-        mobileNumber: Number(props.numberValue),
+        email: props.numberValue,
       })
       .then(function (response) {
         console.log(response);
@@ -22,6 +22,7 @@ export default function ForgotPasswordNumber(props) {
           setAlertMsg(response.data.msg);
           setShowAlert(true);
         }
+        
       })
       .catch(function (error) {
 if(error.response.status == 401){navigate("/")
@@ -43,7 +44,7 @@ if(error.response.status == 401){navigate("/")
           Forgot Password?
         </div>
         <TextField
-          head="Please enter the phone number you used to register"
+          head="Please enter the E-Mail you used to register"
           type="text"
           func={props.numberFunc}
         />

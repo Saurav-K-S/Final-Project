@@ -19,7 +19,7 @@ export default function ChangePassword(props) {
         .post(
           "https://ancestree-backend.onrender.com/api/v1/user/changepassword",
           {
-            mobileNumber: Number(props.numberValue),
+            email: props.numberValue,
             password: password,
           }
         )
