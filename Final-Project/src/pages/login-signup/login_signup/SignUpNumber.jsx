@@ -3,6 +3,7 @@ import Heading from "../../../components/Heading";
 import TextField from "../../../components/TextField";
 import SubmitButton from "../../../components/SubmitButton";
 import axios from "axios";
+import Alert from "../../../components/Alert";
 
 export default function SignUpNumber(props) {
   const [showAlert, setShowAlert] = useState(false);

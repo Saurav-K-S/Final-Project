@@ -55,7 +55,7 @@ if(error.response.status == 401){navigate("/")
           OTP Verification
         </div>
         <div className="ml-[70px] w-[425px] text-[14px] font-IBM-Plex-Mono">
-          Please enter the OTP sent to your mobile number
+          Please enter the OTP sent to your E-Mail.
         </div>
         <OTPInput
           value={otp}
