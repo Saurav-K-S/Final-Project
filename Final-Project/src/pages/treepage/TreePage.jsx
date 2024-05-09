@@ -7,8 +7,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const formatDate = (dateString) => {
-  if (dateString==null) {
-    return""
+  if (dateString == null) {
+    return "";
   }
   const date = new Date(dateString);
   return format(date, "dd/MM/yyyy");
@@ -25,21 +25,19 @@ const formatDateFn = (date) => {
   );
 };
 
-const calculateAge = (dateString0,dateString1) => {
-  if (dateString0==null) {
-    return ""
+const calculateAge = (dateString0, dateString1) => {
+  if (dateString0 == null) {
+    return "";
   }
-  if (dateString1==null) {
-    
+  if (dateString1 == null) {
     const birthDate = new Date(dateString0);
     const age = differenceInYears(new Date(), birthDate);
     return age.toString();
-  }else{
+  } else {
     const birthDate0 = new Date(dateString0);
     const birthDate1 = new Date(dateString1);
     const age = differenceInYears(birthDate1, birthDate0);
     return age.toString();
-    
   }
 };
 
@@ -131,8 +129,10 @@ const renderCustomNode = (
         });
       })
       .catch(function (error) {
-if(error.response.status == 401){navigate("/")
-            localStorage.setItem("token", "");}
+        if (error.response.status == 401) {
+          navigate("/");
+          localStorage.setItem("token", "");
+        }
         console.log(error);
       });
   }
@@ -149,7 +149,7 @@ if(error.response.status == 401){navigate("/")
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"></svg>
       <rect
         x={33}
-        y={-53  }
+        y={-53}
         width={95}
         // width="160"
         height="30"
@@ -163,7 +163,7 @@ if(error.response.status == 401){navigate("/")
         x={45}
         y={-35}
         fill="#000000"
-        className="font-IBM-Plex-Mono font-medium text-[10px] stroke-[0.8px]"
+        className="stroke-[0.8px] font-IBM-Plex-Mono text-[10px] font-medium"
         onClick={renderDiv}
       >
         Show Details
@@ -183,7 +183,7 @@ if(error.response.status == 401){navigate("/")
         x={45}
         y={22}
         fill="#000000"
-        className="font-IBM-Plex-Mono font-medium text-[14px] stroke-[0.8px]"
+        className="stroke-[0.8px] font-IBM-Plex-Mono text-[14px] font-medium"
       >
         {nodeDatum.name}
       </text>
@@ -203,7 +203,7 @@ if(error.response.status == 401){navigate("/")
         width="auto"
         height="20"
         fill="#3C8B5C"
-        className="font-IBM-Plex-Mono font-medium text-[11px] stroke-none text-center"
+        className="stroke-none text-center font-IBM-Plex-Mono text-[11px] font-medium"
       >
         {nodeDatum.id}
       </text>
@@ -252,7 +252,7 @@ export default function TreePage() {
     noOfChildren: 0,
   });
   useEffect(() => {
-    console.log(localStorage.getItem("token"))
+    console.log(localStorage.getItem("token"));
     axios
       .get("https://ancestree-backend.onrender.com/api/v1/family/tree", {
         headers: {
@@ -339,8 +339,10 @@ export default function TreePage() {
         setChartData(response.data.memberPath);
       })
       .catch(function (error) {
-if(error.response.status == 401){navigate("/")
-            localStorage.setItem("token", "");}
+        if (error.response.status == 401) {
+          navigate("/");
+          localStorage.setItem("token", "");
+        }
         console.log(error);
       });
   }
@@ -386,22 +388,22 @@ if(error.response.status == 401){navigate("/")
       });
   }
   return (
-    <div id="treeWrapper" className="h-screen border-line">
-      <div className="fixed top-[5%] right-[3%] flex items-end justify-end">
+    <div id="treeWrapper" className="border-line h-screen">
+      <div className="fixed right-[3%] top-[5%] flex items-end justify-end">
         <div className="mt-[20px]">
-          <div className="w-[425px] text-[14px] font-IBM-Plex-Mono">
+          <div className="w-[425px] font-IBM-Plex-Mono text-[14px]">
             Input ID
           </div>
           <div>
             <input
               onChange={(e) => setMemberSearch(e.target.value)}
-              className="bg-[#FEFFDD] border-[0.1px] border-black border-dashed rounded-[18px] w-[380px]  h-[52px] p-3 mt-[9px]"
+              className="mt-[9px] h-[52px] w-[380px] rounded-[18px] border-[0.1px] border-dashed  border-black bg-[#FEFFDD] p-3"
               type="text"
             />
           </div>
         </div>
         <div
-          className="clickable w-max h-max py-3 px-3 border-[1px] border-black border-dashed rounded-xl font-IBM-Plex-Mono"
+          className="clickable h-max w-max rounded-xl border-[1px] border-dashed border-black px-3 py-3 font-IBM-Plex-Mono"
           onClick={() => {
             searchMember();
           }}
@@ -409,7 +411,7 @@ if(error.response.status == 401){navigate("/")
           Search
         </div>
         <div
-          className="clickable w-max h-max py-3 px-3 border-[1px] border-black border-dashed rounded-xl font-IBM-Plex-Mono"
+          className="clickable h-max w-max rounded-xl border-[1px] border-dashed border-black px-3 py-3 font-IBM-Plex-Mono"
           onClick={() => {
             refreshTree();
           }}
@@ -425,7 +427,7 @@ if(error.response.status == 401){navigate("/")
         orientation="vertical"
         separation={{ siblings: 2, nonSiblings: 2 }}
         initialDepth={0}
-        depthFactor={300 }
+        depthFactor={300}
         enableLegacyTransitions={true}
         renderCustomNodeElement={(rd3tProps) =>
           renderCustomNode(
@@ -437,28 +439,28 @@ if(error.response.status == 401){navigate("/")
         }
       />
       {showCard && (
-        <div className="fixed z-50 bottom-20 right-10 w-[400px] h-max bg-[#FEFFDD] border border-black border-dashed font-IBM-Plex-Mono p-8 rounded-3xl overflow-y-scroll scrollbar-none px-10">
+        <div className="fixed bottom-20 right-10 z-50 h-max w-[400px] overflow-y-scroll rounded-3xl border border-dashed border-black bg-[#FEFFDD] p-8 px-10 font-IBM-Plex-Mono scrollbar-none">
           <div className="flex justify-between">
-            <div className="flex flex-col justify-between items-start">
+            <div className="flex flex-col items-start justify-between">
               <div className="text-[28px] font-semibold">
                 {displayMember.name}
               </div>
-              <div className="text-[15px] flex  text-[#676767]">
+              <div className="flex text-[15px]  text-[#676767]">
                 <div className="text-[#676767]">Member ID:</div>
-                <div className="text-[16px] ml-3 px-3 text-[#3C8B5C] flex justify-center bg-[#CCFFE0] rounded-lg">
+                <div className="ml-3 flex justify-center rounded-lg bg-[#CCFFE0] px-3 text-[16px] text-[#3C8B5C]">
                   {displayMember.id}
                 </div>
               </div>
             </div>
             <div className="flex flex-col justify-between">
               <div
-                className="h-min py-1 px-3 rounded-lg bg-[#67676733]"
+                className="h-min rounded-lg bg-[#67676733] px-3 py-1"
                 onClick={() => setIsEditOpen(true)}
               >
                 EDIT
               </div>
               <div
-                className="h-min py-1 px-3 rounded-lg bg-black text-white cursor-pointer"
+                className="h-min cursor-pointer rounded-lg bg-black px-3 py-1 text-white"
                 onClick={() => setShowCard(false)}
               >
                 CLOSE
@@ -467,31 +469,31 @@ if(error.response.status == 401){navigate("/")
           </div>
 
           <div className="grid grid-cols-2">
-            <div className="bg-[#FFEEB2] w-max px-3 py-2 border border-black border-dashed  mt-3 rounded-lg flex flex-col justify-center items-start">
+            <div className="mt-3 flex w-max flex-col items-start justify-center rounded-lg  border border-dashed border-black bg-[#FFEEB2] px-3 py-2">
               <div className="text-[#676767]">Birth Order:</div>
               <div className="font-semibold">{displayMember.birthOrder}</div>
             </div>
-            <div className="w-max px-3 py-2  rounded-lg flex flex-col justify-center items-start">
+            <div className="flex w-max flex-col  items-start justify-center rounded-lg px-3 py-2">
               <div className="text-[#676767]">Father's Name:</div>
               <div className="font-semibold">{displayMember.father}</div>
             </div>
-            <div className="w-max px-3 py-2  mt-3 rounded-lg flex flex-col justify-center items-start">
+            <div className="mt-3 flex w-max  flex-col items-start justify-center rounded-lg px-3 py-2">
               <div className="text-[#676767]">DOB:</div>
               <div className="font-semibold">
                 {formatDate(displayMember.dob)}
               </div>
             </div>
-            <div className="w-max px-3 py-2  rounded-lg flex flex-col justify-center items-start">
+            <div className="flex w-max flex-col  items-start justify-center rounded-lg px-3 py-2">
               <div className="text-[#676767]">Phone Number:</div>
               <div className="font-semibold">{displayMember.WmobileNumber}</div>
             </div>
-            <div className="w-max px-3 py-2  mt-3 rounded-lg flex flex-col justify-center items-start">
+            <div className="mt-3 flex w-max  flex-col items-start justify-center rounded-lg px-3 py-2">
               <div className="text-[#676767]">Age:</div>
               <div className="font-semibold">
-                {calculateAge(displayMember.dob,displayMember.dod)}
+                {calculateAge(displayMember.dob, displayMember.dod)}
               </div>
             </div>
-            <div className="w-max px-3 py-2  rounded-lg flex flex-col justify-center items-start">
+            <div className="flex w-max flex-col  items-start justify-center rounded-lg px-3 py-2">
               <div className="text-[#676767]">Spouse</div>
               <div className="font-semibold">{displayMember.spouse}</div>
             </div>
@@ -499,20 +501,22 @@ if(error.response.status == 401){navigate("/")
               <div className="text-[#676767]">Dead:</div>
               <div className="font-semibold">14/11/2023</div>
             </div> */}
-            <div className="w-max px-3 py-2  rounded-lg flex flex-col justify-center items-start">
+            <div className="flex w-max flex-col  items-start justify-center rounded-lg px-3 py-2">
               <div className="text-[#676767]">Occupation</div>
               <div className="font-semibold">{displayMember.occupation}</div>
             </div>
-            <div className="w-max px-3 py-2  rounded-lg flex flex-col justify-center items-start">
+            <div className="flex w-max flex-col  items-start justify-center rounded-lg px-3 py-2">
               <div className="text-[#676767]">Date of Death</div>
-              <div className="font-semibold">{formatDate(displayMember.dod) }</div>
+              <div className="font-semibold">
+                {formatDate(displayMember.dod)}
+              </div>
             </div>
-            <div className="w-max px-3 py-2  rounded-lg flex flex-col justify-center items-start">
+            <div className="flex w-max flex-col  items-start justify-center rounded-lg px-3 py-2">
               <div className="text-[#676767]">Blood Group</div>
               <div className="font-semibold">{displayMember.bloodGroup}</div>
             </div>
-            <div className="w-max px-3 py-2  mt-3 rounded-lg flex flex-col justify-center items-start">
-              <div className="text-[#676767] w-min">Number of Children:</div>
+            <div className="mt-3 flex w-max  flex-col items-start justify-center rounded-lg px-3 py-2">
+              <div className="w-min text-[#676767]">Number of Children:</div>
               <div className="font-semibold">{displayMember.noOfChildren}</div>
             </div>
           </div>
@@ -520,10 +524,10 @@ if(error.response.status == 401){navigate("/")
       )}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-          <div className="w-[500px] h-[500px] bg-[#FFEEB2] font-IBM-Plex-Mono p-8 rounded-lg overflow-y-scroll scrollbar-none">
-            <h2 className="text-2xl font-bold mb-4">Add Member</h2>
+          <div className="h-[500px] w-[500px] overflow-y-scroll rounded-lg bg-[#FFEEB2] p-8 font-IBM-Plex-Mono scrollbar-none">
+            <h2 className="mb-4 text-2xl font-bold">Add Member</h2>
             {/* Form inputs */}
-            <label className="block mb-4">
+            <label className="mb-4 block">
               <input
                 type="radio"
                 value="self"
@@ -534,7 +538,7 @@ if(error.response.status == 401){navigate("/")
               />
               Myself
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               <input
                 type="radio"
                 value="other"
@@ -546,7 +550,7 @@ if(error.response.status == 401){navigate("/")
               />
               Other Member
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Name:
               <input
                 type="text"
@@ -555,10 +559,10 @@ if(error.response.status == 401){navigate("/")
                   setMemberDetails({ ...memberDetails, name: e.target.value })
                 }
                 placeholder="Enter name"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               WhatsApp Mobile Number:
               <input
                 type="text"
@@ -570,10 +574,10 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter WhatsApp mobile number"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Email:
               <input
                 type="text"
@@ -585,10 +589,10 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter EMail"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Parent ID:
               <input
                 type="text"
@@ -600,36 +604,43 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter Parent ID"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
-            <label className="block mb-4">
-              Date Of Birth:<br />
+            <label className="mb-4 block">
+              Date Of Birth:
+              <br />
               <DatePicker
-                className="border rounded-md w-[210%] h-10 mt-1 pl-2"
+                className="mt-1 h-10 w-[210%] rounded-md border pl-2"
                 selected={memberDetails.dob}
                 onChange={(date) => {
-                  setMemberDetails({...memberDetails,dob:formatDateFn(date)})
-                  
+                  setMemberDetails({
+                    ...memberDetails,
+                    dob: formatDateFn(date),
+                  });
+
                   console.log(memberDetails.dob);
                 }}
                 dateFormat="YYYY-MM-dd"
               />
             </label>
-                <label className="block mb-4">
-                  Date Of Death: <br />
-                  <DatePicker
-                className="border rounded-md w-[210%] h-10 mt-1 pl-2"
+            <label className="mb-4 block">
+              Date Of Death: <br />
+              <DatePicker
+                className="mt-1 h-10 w-[210%] rounded-md border pl-2"
                 selected={memberDetails.dod}
                 onChange={(date) => {
-                  setMemberDetails({...memberDetails,dod:formatDateFn(date)})
-                  
+                  setMemberDetails({
+                    ...memberDetails,
+                    dod: formatDateFn(date),
+                  });
+
                   console.log(memberDetails.dod);
                 }}
                 dateFormat="YYYY-MM-dd"
               />
-                </label>
-            <label className="block mb-4">
+            </label>
+            <label className="mb-4 block">
               Blood Group:
               <select
                 value={memberDetails.bloodGroup}
@@ -639,7 +650,7 @@ if(error.response.status == 401){navigate("/")
                     bloodGroup: e.target.value,
                   })
                 }
-                className="block w-full border border-gray-300 p-2 rounded"
+                className="block w-full rounded border border-gray-300 p-2"
                 placeholder="Enter The Blood Group"
               >
                 <option value="A+">A +ve</option>
@@ -652,7 +663,7 @@ if(error.response.status == 401){navigate("/")
                 <option value="O-">O -ve</option>
               </select>
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Alternate Mobile:
               <input
                 type="text"
@@ -664,10 +675,10 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter Alternate mobile number"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Spouse:
               <input
                 type="text"
@@ -679,10 +690,10 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter Spouse Name"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Father's Name:
               <input
                 type="text"
@@ -694,10 +705,10 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter Father Name"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Occupation:
               <input
                 type="text"
@@ -709,10 +720,10 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter Occupation"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Address:
               <input
                 type="text"
@@ -724,10 +735,10 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter Address"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Birth Order:
               <input
                 type="number"
@@ -739,10 +750,10 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter the birth order"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Gender:
               <select
                 value={memberDetails.gender}
@@ -752,13 +763,13 @@ if(error.response.status == 401){navigate("/")
                     gender: e.target.value,
                   })
                 }
-                className="block w-full border border-gray-300 p-2 rounded"
+                className="block w-full rounded border border-gray-300 p-2"
               >
                 <option value={1}>Male</option>
                 <option value={0}>Female</option>
               </select>
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Number of Children:
               <input
                 type="number"
@@ -770,19 +781,19 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter number of children"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
             <div className="flex justify-between">
               <button
                 onClick={submitMember}
-                className="bg-[#FFE072] text-black px-4 py-2 rounded hover:bg-[#FFE072]"
+                className="rounded bg-[#FFE072] px-4 py-2 text-black hover:bg-[#FFE072]"
               >
                 Submit
               </button>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="bg-black text-white px-4 py-2 rounded hover:bg-red-600"
+                className="rounded bg-black px-4 py-2 text-white hover:bg-red-600"
               >
                 Close
               </button>
@@ -792,11 +803,11 @@ if(error.response.status == 401){navigate("/")
       )}
       {isEditOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-          <div className="w-[500px] h-[500px] bg-[#FFEEB2] font-IBM-Plex-Mono p-8 rounded-lg overflow-y-scroll scrollbar-none">
-            <h2 className="text-2xl font-bold mb-4">Edit Member</h2>
+          <div className="h-[500px] w-[500px] overflow-y-scroll rounded-lg bg-[#FFEEB2] p-8 font-IBM-Plex-Mono scrollbar-none">
+            <h2 className="mb-4 text-2xl font-bold">Edit Member</h2>
             {/* Form inputs */}
 
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Email:
               <input
                 type="text"
@@ -808,11 +819,11 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter EMail"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
 
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Date Of Birth:
               <input
                 type="text"
@@ -824,10 +835,10 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter Date Of Birth"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Alternate Mobile:
               <input
                 type="text"
@@ -839,10 +850,10 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter Alternate mobile number"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Spouse:
               <input
                 type="text"
@@ -854,11 +865,11 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter Spouse Name"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
 
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Occupation:
               <input
                 type="text"
@@ -870,10 +881,10 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter Occupation"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Address:
               <input
                 type="text"
@@ -885,16 +896,15 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter Address"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
 
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Number of Children:
               <input
                 type="number"
                 value={displayMember.noOfChildren}
-                
                 onChange={(e) =>
                   setMemberDetails({
                     ...memberDetails,
@@ -902,7 +912,7 @@ if(error.response.status == 401){navigate("/")
                   })
                 }
                 placeholder="Enter number of children"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
             <div className="flex justify-between">
@@ -910,13 +920,13 @@ if(error.response.status == 401){navigate("/")
                 onClick={() =>
                   editMember(memberDetails, displayMember.id, setIsEditOpen)
                 }
-                className="bg-[#FFE072] text-black px-4 py-2 rounded hover:bg-[#FFE072]"
+                className="rounded bg-[#FFE072] px-4 py-2 text-black hover:bg-[#FFE072]"
               >
                 Submit
               </button>
               <button
                 onClick={() => setIsEditOpen(false)}
-                className="bg-black text-white px-4 py-2 rounded hover:bg-red-600"
+                className="rounded bg-black px-4 py-2 text-white hover:bg-red-600"
               >
                 Close
               </button>
@@ -926,45 +936,48 @@ if(error.response.status == 401){navigate("/")
       )}
       {showSearchName && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50">
-          <div className="w-full h-[90%] mx-60  bg-[#FFEEB2] font-IBM-Plex-Mono p-8 rounded-lg overflow-y-scroll scrollbar-none">
-            <h2 className="text-2xl font-bold mb-4">Search Member by Name:</h2>
+          <div className="mx-60 h-[90%] w-full  overflow-y-scroll rounded-lg bg-[#FFEEB2] p-8 font-IBM-Plex-Mono scrollbar-none">
+            <h2 className="mb-4 text-2xl font-bold">Search Member by Name:</h2>
             {/* Form inputs */}
 
-            <label className="block mb-4">
+            <label className="mb-4 block">
               Name:
               <input
                 type="text"
                 value={searchName}
                 onChange={(e) => setSearchName(e.target.value)}
                 placeholder="Enter Name"
-                className="block w-full mb-4 border border-gray-300 p-2 rounded"
+                className="mb-4 block w-full rounded border border-gray-300 p-2"
               />
             </label>
             <div className="grid grid-cols-2 gap-x-3 gap-y-2">
-
-            {nameList.map((nameData, index) => (
-              <div className="py-4 mb-3 px-4 w-full flex flex-col justify-center items-center border-[1px] border-black border-dashed rounded-3xl">
-                <div className="w-full flex justify-between items-center">
-                  <div>{nameData.name}</div>
-                  <div className="bg-[#CCFFE0] text-[#3C8B5C] rounded-[9px] px-5">{nameData.memberId}</div>
+              {nameList.map((nameData, index) => (
+                <div className="mb-3 flex w-full flex-col items-center justify-center rounded-3xl border-[1px] border-dashed border-black px-4 py-4">
+                  <div className="flex w-full items-center justify-between">
+                    <div>{nameData.name}</div>
+                    <div className="rounded-[9px] bg-[#CCFFE0] px-5 text-[#3C8B5C]">
+                      {nameData.memberId}
+                    </div>
+                  </div>
+                  <div className="mt-2 flex w-full items-center justify-end">
+                    <div className="flex items-center">
+                      <CiPhone size={20} />
+                      {nameData.WmobileNumber}
+                    </div>
+                  </div>
                 </div>
-                <div className="mt-2 w-full flex justify-end items-center">
-                  
-                  <div className="flex items-center"><CiPhone  size={20} />{nameData.WmobileNumber}</div>
-                </div>
-              </div>
-            ))}
+              ))}
             </div>
             <div className="flex justify-between">
               <button
                 onClick={() => searchMemberName()}
-                className="bg-[#FFE072] text-black px-4 py-2 rounded hover:bg-[#FFE072]"
+                className="rounded bg-[#FFE072] px-4 py-2 text-black hover:bg-[#FFE072]"
               >
                 Submit
               </button>
               <button
                 onClick={() => setShowSearchName(false)}
-                className="bg-black text-white px-4 py-2 rounded hover:bg-red-600"
+                className="rounded bg-black px-4 py-2 text-white hover:bg-red-600"
               >
                 Close
               </button>
@@ -972,16 +985,16 @@ if(error.response.status == 401){navigate("/")
           </div>
         </div>
       )}
-      <div className="fixed text-[20px] bottom-4 right-4 font-semibold  text-black font-IBM-Plex-Mono flex flex-col">
+      <div className="fixed bottom-4 right-4 flex flex-col  font-IBM-Plex-Mono text-[20px] font-semibold text-black">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="clickable px-10 py-2 rounded-3xl hover:[#FFE072] shadow-inner bg-[#FFEEB2] "
+          className="clickable hover:[#FFE072] rounded-3xl bg-[#FFEEB2] px-10 py-2 shadow-inner "
         >
           Add Member
         </button>
         <button
           onClick={() => setShowSearchName(true)}
-          className="clickable px-10 py-2 rounded-3xl hover:[#FFE072] shadow-inner bg-[#FFEEB2] mt-5"
+          className="clickable hover:[#FFE072] mt-5 rounded-3xl bg-[#FFEEB2] px-10 py-2 shadow-inner"
         >
           Search Member
         </button>

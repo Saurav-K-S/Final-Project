@@ -77,14 +77,14 @@ export default function Profile() {
       });
   }
   return (
-    <div className="h-screen flex flex-col pt-14 pl-16">
+    <div className="flex h-screen flex-col pl-16 pt-14">
       {imageEdit && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-          <form className="bg-[#FFEEB2] p-8 rounded-lg shadow-lg">
-            <label className="block mb-4 font-IBM-Plex-Mono font-semibold">
+        <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
+          <form className="rounded-lg bg-[#FFEEB2] p-8 shadow-lg">
+            <label className="mb-4 block font-IBM-Plex-Mono font-semibold">
               Family Photo:
               <div>
-                <div className="w-[375px] h-[185px]">
+                <div className="h-[185px] w-[375px]">
                   <label
                     // htmlFor="fileInput"
                     className=" relative inline-block cursor-pointer"
@@ -98,8 +98,8 @@ export default function Profile() {
                     <div
                       className={
                         uploaded
-                          ? "-z-2 hidden w-[375px] absolute h-[185px]"
-                          : "z-1 w-[375px] absolute h-[185px] border-[#6A6A6A] border-[1px] border-dashed rounded-[18px] flex flex-col justify-center items-center"
+                          ? "-z-2 absolute hidden h-[185px] w-[375px]"
+                          : "z-1 absolute flex h-[185px] w-[375px] flex-col items-center justify-center rounded-[18px] border-[1px] border-dashed border-[#6A6A6A]"
                       }
                     >
                       <svg
@@ -118,7 +118,7 @@ export default function Profile() {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      <div className="font-IBM-Plex-Mono text-[14px] text-[#6A6A6A] mt-3">
+                      <div className="mt-3 font-IBM-Plex-Mono text-[14px] text-[#6A6A6A]">
                         Upload Picture
                       </div>
                     </div>
@@ -128,8 +128,8 @@ export default function Profile() {
                     // key={index}
                     className={
                       uploaded
-                        ? "z-1 absolute w-[375px] h-[185px]   overflow-hidden border-[#6A6A6A] border-[1px] border-dashed rounded-[18px] flex flex-col justify-center items-center"
-                        : " -z-2 absolute w-[375px] h-[185px] hidden"
+                        ? "z-1 absolute flex h-[185px]   w-[375px] flex-col items-center justify-center overflow-hidden rounded-[18px] border-[1px] border-dashed border-[#6A6A6A]"
+                        : " -z-2 absolute hidden h-[185px] w-[375px]"
                     }
                   >
                     <img
@@ -140,10 +140,10 @@ export default function Profile() {
                 </div>
               </div>
             </label>
-            <div className="flex justify-between mt-10">
+            <div className="mt-10 flex justify-between">
               <div className={uploaded ? "block" : "hidden"}>
                 <div
-                  className="clickable bg-red text-black px-4 py-2 rounded hover:bg-[#FFE072] border border-black cursor-pointer"
+                  className="clickable bg-red cursor-pointer rounded border border-black px-4 py-2 text-black hover:bg-[#FFE072]"
                   onClick={() => {
                     onContinue();
                   }}
@@ -152,7 +152,7 @@ export default function Profile() {
                 </div>
               </div>
               <div
-                className="clickable bg-black text-white px-4 py-2 rounded hover:bg-red-600 cursor-pointer"
+                className="clickable cursor-pointer rounded bg-black px-4 py-2 text-white hover:bg-red-600"
                 onClick={() => {
                   onRemove(), setImageEdit(false);
                 }}
@@ -179,10 +179,10 @@ export default function Profile() {
           </form>
         </div>
       )}
-      <div className="max-h-[250px] mr-16 overflow-hidden text-[15px] font-IBM-Plex-Mono rounded-[28px] flex justify-start items-center">
+      <div className="mr-16 flex max-h-[250px] items-center justify-start overflow-hidden rounded-[28px] font-IBM-Plex-Mono text-[15px]">
         <img src={localStorage.getItem("homeImage")} alt="Not Found" />
         <div
-          className="clickable fixed right-16  top-4 bg-[#FFEEB2] w-max  h-max px-3 rounded-md border border-black border-dashed text-[18px] font-IBM-Plex-Mono cursor-pointer"
+          className="clickable fixed right-16  top-4 h-max w-max  cursor-pointer rounded-md border border-dashed border-black bg-[#FFEEB2] px-3 font-IBM-Plex-Mono text-[18px]"
           onClick={() => {
             setImageEdit(true);
           }}
@@ -191,21 +191,21 @@ export default function Profile() {
         </div>
       </div>
       <div className="flex flex-col">
-        <div className="mt-3 w-full flex flex-row justify-between items-center">
+        <div className="mt-3 flex w-full flex-row items-center justify-between">
           <div>
-            <div className="w-auto font-semibold text-[32px] font-IBM-Plex-Mono">
+            <div className="w-auto font-IBM-Plex-Mono text-[32px] font-semibold">
               {name}
             </div>
-            <div className="text-[24px] font-IBM-Plex-Mono text-[#676767]  mt-11">
+            <div className="mt-11 font-IBM-Plex-Mono text-[24px]  text-[#676767]">
               {email}
             </div>
           </div>
-          <div className="w-max flex flex-col justify-end items-end pr-14">
-            <div className="w-max h-auto text-[24px] font-IBM-Plex-Mono bg-[#CCFFE0] text-[#3C8B5C] rounded-[9px] px-5">
+          <div className="flex w-max flex-col items-end justify-end pr-14">
+            <div className="h-auto w-max rounded-[9px] bg-[#CCFFE0] px-5 font-IBM-Plex-Mono text-[24px] text-[#3C8B5C]">
               {id}
             </div>
 
-            <div className="w-max text-[30px] flex items-center font-IBM-Plex-Mono  mt-11">
+            <div className="mt-11 flex w-max items-center font-IBM-Plex-Mono  text-[30px]">
               <div>
                 <CiPhone size={30} />
               </div>
@@ -214,9 +214,9 @@ export default function Profile() {
           </div>
         </div>
         <div
-          className="w-max text-[30px] flex justify-center items-center font-IBM-Plex-Mono border-black border-[0.3px] px-5 rounded-xl bg-[#FFEEB2] mt-11"
+          className="mt-11 flex w-max items-center justify-center rounded-xl border-[0.3px] border-black bg-[#FFEEB2] px-5 font-IBM-Plex-Mono text-[30px]"
           onClick={() => {
-            navigate("/")
+            navigate("/");
             localStorage.setItem("token", "");
           }}
         >

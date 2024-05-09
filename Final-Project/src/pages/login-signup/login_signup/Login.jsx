@@ -65,8 +65,8 @@ export default function Login(props) {
   };
 
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <div className="login w-[410px] h-[550px]">
+    <div className="flex h-screen w-full items-center justify-center">
+      <div className="login h-[550px] w-[410px]">
         <Heading head="Login" />
 
         <TextField
@@ -82,7 +82,7 @@ export default function Login(props) {
           inputRef={passwordInputRef}
         />
 
-        <div className=" flex justify-end text-[13px] mt-[5px] text-[#6A6A6A] font-IBM-Plex-Mono">
+        <div className=" mt-[5px] flex justify-end font-IBM-Plex-Mono text-[13px] text-[#6A6A6A]">
           <Link to="/forgotpassword">Forgot password</Link>
         </div>
 

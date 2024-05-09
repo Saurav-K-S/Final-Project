@@ -22,16 +22,28 @@ export default function FamilyJoinCreation() {
     //       fatherFunc={setFatherName}
     //       occupationFunc={setOccupation}
     //     />
-        
+
     //   );
     case 1:
-      return <OptionSelect name={name} indexFunc={setIndex}/>;
+      return <OptionSelect name={name} indexFunc={setIndex} />;
     case 2:
       return <FamilyJoin name={name} />;
     case 3:
-      return <CreateFamily name={name} familyNameFunc={setFamilyName} indexFunc={setIndex}/>;
+      return (
+        <CreateFamily
+          name={name}
+          familyNameFunc={setFamilyName}
+          indexFunc={setIndex}
+        />
+      );
     case 4:
-      return <FamilyHistory name={name} familyName={familyName} indexFunc={setIndex}/>;
+      return (
+        <FamilyHistory
+          name={name}
+          familyName={familyName}
+          indexFunc={setIndex}
+        />
+      );
     case 5:
       return <UploadPhoto name={name} />;
   }

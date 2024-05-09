@@ -10,7 +10,7 @@ export default function SignUpNumber(props) {
   const [alertMsg, setAlertMsg] = useState("");
 
   function Submit() {
-    console.log("HIIII")
+    console.log("HIIII");
     axios
       .post("https://ancestree-backend.onrender.com/api/v1/user/register", {
         email: props.emailValue,
@@ -21,26 +21,27 @@ export default function SignUpNumber(props) {
           props.otpFunc(response.data.otp);
           props.indexFunc(2);
         } else {
-          setAlertMsg(response.data.msg+" Click to go back to Sign In" );
+          setAlertMsg(response.data.msg + " Click to go back to Sign In");
           setShowAlert(true);
         }
       })
       .catch(function (error) {
-if(error.response.status == 401){navigate("/")
-            localStorage.setItem("token", "");}
+        if (error.response.status == 401) {
+          navigate("/");
+          localStorage.setItem("token", "");
+        }
         console.log(error);
-        setAlertMsg(error.response.data.msg+" Click to go back to Sign In");
+        setAlertMsg(error.response.data.msg + " Click to go back to Sign In");
         setShowAlert(true);
       });
   }
   const closeAlert = () => {
     setShowAlert(false);
     props.indexFunc(0);
-
   };
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <div className="w-[410px] h-[450px]">
+    <div className="flex h-screen w-full items-center justify-center">
+      <div className="h-[450px] w-[410px]">
         <Heading head="SignUp" />
         <div className="ml-[20px] font-IBM-Plex-Mono text-[17px] font-semibold">
           OTP Verification

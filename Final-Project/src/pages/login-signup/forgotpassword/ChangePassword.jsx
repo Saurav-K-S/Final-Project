@@ -35,8 +35,10 @@ export default function ChangePassword(props) {
           }
         })
         .catch(function (error) {
-if(error.response.status == 401){navigate("/")
-            localStorage.setItem("token", "");}
+          if (error.response.status == 401) {
+            navigate("/");
+            localStorage.setItem("token", "");
+          }
           console.log(error);
           setAlertMsg(
             error.response.data.msg + " Click to go back to Entering2 Number"
@@ -53,8 +55,8 @@ if(error.response.status == 401){navigate("/")
     props.indexFunc(0);
   };
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <div className="w-[424px] h-[550px]">
+    <div className="flex h-screen w-full items-center justify-center">
+      <div className="h-[550px] w-[424px]">
         <Heading head="Login" />
         <div className="ml-[20px] font-IBM-Plex-Mono text-[17px] font-semibold">
           Forgot Password?

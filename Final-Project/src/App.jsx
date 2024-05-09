@@ -1,6 +1,5 @@
-
-import Login from "./pages/login-signup/login_signup/Login"
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from "./pages/login-signup/login_signup/Login";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import SignUp from "./pages/login-signup/login_signup/SignUp";
 import BasePage from "./pages/basepage/BasePage";
 import ForgotPassword from "./pages/login-signup/forgotpassword/ForgotPassword";
@@ -10,26 +9,22 @@ import Onboarding from "./onboarding/Onboarding";
 import Photos from "./pages/album/Photos";
 import TreePageMobile from "./pages/treepage/TreePageMobile";
 
-
 function App() {
-
   return (
-
     <Router>
       <Routes>
-        <Route path="/basepage" element={<BasePage/>} />   
-        <Route path="/treepageiframe/:userId" element={<TreePageMobile/>} />   
-        <Route path="/familyjoincreation" element={<FamilyJoinCreation/>} />   
-        <Route path="/upload" element={<UploadPhotoOG/>} />   
-        <Route path="/forgotpassword" element={<ForgotPassword/>} /> 
-        <Route path="/" element={<Onboarding/>} /> 
-        <Route path="/photos/:id" element={<Photos/>} /> 
-        <Route path="/login" element={<Login newUser={false}/>} />
-        <Route path="/signup" element={<SignUp/>} />
+        <Route path="/basepage" element={<BasePage />} />
+        <Route path="/treepageiframe/:userId" element={<TreePageMobile />} />
+        <Route path="/familyjoincreation" element={<FamilyJoinCreation />} />
+        <Route path="/upload" element={<UploadPhotoOG />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/" element={<Onboarding />} />
+        <Route path="/photos/:id" element={<Photos />} />
+        <Route path="/login" element={<Login newUser={false} />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </Router>
-
-  )
+  );
 }
 
-export default App
+export default App;

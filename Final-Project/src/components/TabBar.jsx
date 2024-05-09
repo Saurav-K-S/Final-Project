@@ -6,7 +6,7 @@ export default function TabBar({ onTabChange, selectedIndex }) {
     onTabChange(index);
   };
   return (
-    <div className="flex flex-col justify-center items-center w-[15%] h-screen">
+    <div className="flex h-screen w-[15%] flex-col items-center justify-center">
       <div className="h-[10%]">
         <svg
           width="64"
@@ -76,7 +76,7 @@ export default function TabBar({ onTabChange, selectedIndex }) {
           />
         </svg>
       </div>
-      <div className="h-[80%] flex flex-col justify-center  py-5">
+      <div className="flex h-[80%] flex-col justify-center  py-5">
         <HomeTabs
           active={selectedIndex == 0 ? 1 : 0}
           tabClick={handleTabClick}

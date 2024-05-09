@@ -83,7 +83,7 @@ const renderCustomNode = ({ nodeDatum, toggleNode }) => {
         x={45}
         y={22}
         fill="#000000"
-        className="font-IBM-Plex-Mono font-medium text-[14px] stroke-[0.8px]"
+        className="stroke-[0.8px] font-IBM-Plex-Mono text-[14px] font-medium"
       >
         {nodeDatum.name}
       </text>
@@ -103,7 +103,7 @@ const renderCustomNode = ({ nodeDatum, toggleNode }) => {
         width="auto"
         height="20"
         fill="#3C8B5C"
-        className="font-IBM-Plex-Mono font-medium text-[11px] stroke-none text-center"
+        className="stroke-none text-center font-IBM-Plex-Mono text-[11px] font-medium"
       >
         {nodeDatum.id}
       </text>
@@ -118,7 +118,10 @@ export default function TreePageMobile() {
   useEffect(() => {
     console.log(userId);
     axios
-      .get("https://ancestree-backend.onrender.com/api/v1/family/treeMobile/"+userId)
+      .get(
+        "https://ancestree-backend.onrender.com/api/v1/family/treeMobile/" +
+          userId
+      )
       .then((response) => {
         console.log(response.data);
         if (response.data.success) {
@@ -132,10 +135,13 @@ export default function TreePageMobile() {
   }, []);
 
   return (
-    <div id="treeWrapper" className="h-screen w-screen flex justify-center items-center border-line">
+    <div
+      id="treeWrapper"
+      className="border-line flex h-screen w-screen items-center justify-center"
+    >
       <Tree
         collapsible={true}
-        translate={{ x: screen.width/2, y: 200 }}
+        translate={{ x: screen.width / 2, y: 200 }}
         data={chartData}
         pathFunc={"step"}
         orientation="vertical"

@@ -5,14 +5,14 @@ export default function TextField(props) {
 
   return (
     <div className="ml-[22px] mt-[20px]">
-      <div className="w-[425px] text-[14px] font-IBM-Plex-Mono">
+      <div className="w-[425px] font-IBM-Plex-Mono text-[14px]">
         {props.head}
       </div>
       <div>
         <input
           ref={inputRef}
           onChange={(e) => props.func(e.target.value)}
-          className="bg-[#FEFFDD] cursor-none border-[0.1px] border-black border-dashed rounded-[18px] w-[380px]  h-[52px] p-3 mt-[9px]"
+          className="mt-[9px] h-[52px] w-[380px] cursor-none rounded-[18px] border-[0.1px] border-dashed  border-black bg-[#FEFFDD] p-3"
           type={props.type}
         />
       </div>

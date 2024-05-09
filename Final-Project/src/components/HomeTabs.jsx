@@ -8,8 +8,8 @@ export default function HomeTabs({ name, svg, index, tabClick, active }) {
     <div
       className={
         active == 1
-          ? "clickable w-[110px] h-[110px] mt-6 border-black border-[0.6px] border-dashed flex flex-col justify-center items-center rounded-[18px] bg-[#FFEEB2] transition-all ease-in-out"
-          : "clickable w-[110px] h-[85px] mt-6 border-black border-[0.6px] border-dashed flex flex-col justify-center items-center rounded-[18px] transition-all ease-in-out"
+          ? "clickable mt-6 flex h-[110px] w-[110px] flex-col items-center justify-center rounded-[18px] border-[0.6px] border-dashed border-black bg-[#FFEEB2] transition-all ease-in-out"
+          : "clickable mt-6 flex h-[85px] w-[110px] flex-col items-center justify-center rounded-[18px] border-[0.6px] border-dashed border-black transition-all ease-in-out"
       }
       onClick={handleTabClick}
     >
@@ -17,7 +17,7 @@ export default function HomeTabs({ name, svg, index, tabClick, active }) {
       <div
         className={
           active == 1
-            ? "mt-[4px] font-IBM-Plex-Mono text-[15px] text-black font-bold"
+            ? "mt-[4px] font-IBM-Plex-Mono text-[15px] font-bold text-black"
             : "mt-[4px] font-IBM-Plex-Mono text-[15px] text-[#6A6A6A]"
         }
       >

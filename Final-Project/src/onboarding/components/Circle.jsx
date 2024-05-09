@@ -6,7 +6,7 @@ const Circle = ({ deg, changeDeg }) => {
       className="circle z-10"
       style={{ transform: `translate(-50%) rotate(-${deg}deg)` }}
     >
-        <img src="./assets/circular_element.png" alt="" srcset="" />
+      <img src="./assets/circular_element.png" alt="" srcset="" />
       {/* <a
         href="#profile"
         onClick={() => changeDeg(0)}

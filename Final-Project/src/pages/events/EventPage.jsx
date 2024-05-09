@@ -6,7 +6,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import { format } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import 'react-time-picker/dist/TimePicker.css';
+import "react-time-picker/dist/TimePicker.css";
 
 export default function EventPage() {
   const [eventData, seteventData] = useState([]);
@@ -142,23 +142,23 @@ export default function EventPage() {
   }
 
   return (
-    <div className="w-full h-screen ml-8 mt-44">
-      <div className="w-[90%] h-[70%] grid grid-cols-2  gap-4 gap-y-11 overflow-y-scroll scrollbar-none">
+    <div className="ml-8 mt-44 h-screen w-full">
+      <div className="grid h-[70%] w-[90%] grid-cols-2  gap-4 gap-y-11 overflow-y-scroll scrollbar-none">
         {eventData.map((boxData, index) => (
           <div
             key={index}
-            className="w-[430px] h-[200px] flex flex-col justify-start pt-5 items-start rounded-[12px] border-[0.1px] border-black  cursor-pointer overflow-y-scroll scrollbar-thumb-rounded-sm scrollbar-track-transparent scrollbar scrollbar-thumb-[#FFEEB2]"
+            className="flex h-[200px] w-[430px] cursor-pointer flex-col items-start justify-start overflow-y-scroll rounded-[12px] border-[0.1px]  border-black pt-5 scrollbar scrollbar-track-transparent scrollbar-thumb-[#FFEEB2] scrollbar-thumb-rounded-sm"
             // onClick={() => handleBoxClick(boxData.id)}
           >
-            <div className="w-full px-7 flex flex-row justify-between items-center">
+            <div className="flex w-full flex-row items-center justify-between px-7">
               <div className="font-IBM-Plex-Mono text-[18px] font-semibold">
                 {boxData.name}
               </div>
-              <div className="font-IBM-Plex-Mono bg-[#676767] text-[11px] text-[#676767] bg-opacity-[8%] px-4 rounded-md py-2">
+              <div className="rounded-md bg-[#676767] bg-opacity-[8%] px-4 py-2 font-IBM-Plex-Mono text-[11px] text-[#676767]">
                 {boxData.place}
               </div>
               <div
-                className="clickable font-IBM-Plex-Mono bg-black text-[11px] text-white px-4 rounded-md py-2"
+                className="clickable rounded-md bg-black px-4 py-2 font-IBM-Plex-Mono text-[11px] text-white"
                 onClick={() => {
                   setShowDeleteConf(true),
                     setDeleteId(boxData._id),
@@ -168,16 +168,16 @@ export default function EventPage() {
                 Delete Event?
               </div>
             </div>
-            <div className="font-IBM-Plex-Mono text-[#676767] px-7 pt-5">
+            <div className="px-7 pt-5 font-IBM-Plex-Mono text-[#676767]">
               {formatDate(boxData.date)}
             </div>
-            <div className="font-IBM-Plex-Mono px-7 pt-5">
+            <div className="px-7 pt-5 font-IBM-Plex-Mono">
               {boxData.details}
             </div>
           </div>
         ))}
         <div
-          className="clickable w-[180px] h-[200px] flex flex-col justify-center items-center rounded-[12px] border-[0.1px] border-[#676767]  cursor-pointer"
+          className="clickable flex h-[200px] w-[180px] cursor-pointer flex-col items-center justify-center rounded-[12px] border-[0.1px]  border-[#676767]"
           onClick={handleAddEventClick}
         >
           <CiCirclePlus size={100} color="#676767" />
@@ -187,13 +187,13 @@ export default function EventPage() {
         </div>
       </div>
       {showDeleteConf && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-          <form className="bg-[#FFEEB2] p-8 rounded-lg shadow-lg">
-            <label className="block mb-4 font-IBM-Plex-Mono font-semibold">
+        <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
+          <form className="rounded-lg bg-[#FFEEB2] p-8 shadow-lg">
+            <label className="mb-4 block font-IBM-Plex-Mono font-semibold">
               Are you sure you want to delete the event?
-              <div className="flex justify-between mt-3">
+              <div className="mt-3 flex justify-between">
                 <div
-                  className="bg-red text-black px-4 py-2 rounded hover:bg-[#FFE072] border border-black cursor-pointer"
+                  className="bg-red cursor-pointer rounded border border-black px-4 py-2 text-black hover:bg-[#FFE072]"
                   onClick={() => {
                     deleteEvent(deleteId);
                   }}
@@ -201,7 +201,7 @@ export default function EventPage() {
                   Delete
                 </div>
                 <div
-                  className="bg-black text-white px-4 py-2 rounded hover:bg-red-600 cursor-pointer"
+                  className="cursor-pointer rounded bg-black px-4 py-2 text-white hover:bg-red-600"
                   onClick={() => setShowDeleteConf(false)}
                 >
                   Close
@@ -212,35 +212,35 @@ export default function EventPage() {
         </div>
       )}
       {showForm && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+        <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
           <form
-            className="bg-[#FFEEB2] p-8 rounded-lg shadow-lg"
+            className="rounded-lg bg-[#FFEEB2] p-8 shadow-lg"
             onSubmit={handleSubmit}
           >
-            <label className="block mb-4 font-IBM-Plex-Mono font-semibold">
+            <label className="mb-4 block font-IBM-Plex-Mono font-semibold">
               Event Name:
               <input
                 type="text"
                 value={eventName}
                 onChange={(e) => setEventName(e.target.value)}
-                className="border rounded-md w-full h-10 mt-1 pl-2"
+                className="mt-1 h-10 w-full rounded-md border pl-2"
                 required
               />
             </label>
-            <label className="block mb-4 font-IBM-Plex-Mono font-semibold">
+            <label className="mb-4 block font-IBM-Plex-Mono font-semibold">
               Event Place:
               <input
                 type="text"
                 value={eventPlace}
                 onChange={(e) => setEventPlace(e.target.value)}
-                className="border rounded-md w-full h-10 mt-1 pl-2"
+                className="mt-1 h-10 w-full rounded-md border pl-2"
                 required
               />
             </label>
-            <label className="block mb-4 font-IBM-Plex-Mono font-semibold">
+            <label className="mb-4 block font-IBM-Plex-Mono font-semibold">
               Event Date: <br />
               <DatePicker
-                className="border rounded-md w-[165%] h-10 mt-1 pl-2"
+                className="mt-1 h-10 w-[165%] rounded-md border pl-2"
                 selected={eventDate}
                 onChange={(date) => {
                   setEventDate(formatDateFn(date));
@@ -257,14 +257,13 @@ export default function EventPage() {
                 required
               /> */}
             </label>
-            <label className="block mb-4 font-IBM-Plex-Mono font-semibold">
+            <label className="mb-4 block font-IBM-Plex-Mono font-semibold">
               Event Time:
               <TimePicker
                 // className="border rounded-md w-full h-10 mt-1 pl-2"
                 onChange={setEventTime}
                 value={eventTime}
                 disableClock="false"
-
               />
               {/* <input
                 type="text"
@@ -274,26 +273,26 @@ export default function EventPage() {
                 required
               /> */}
             </label>
-            <label className="block mb-4 font-IBM-Plex-Mono font-semibold">
+            <label className="mb-4 block font-IBM-Plex-Mono font-semibold">
               Event Details:
               <input
                 type="text"
                 value={eventDetails}
                 onChange={(e) => setEventDetails(e.target.value)}
-                className="border rounded-md w-full h-10 mt-1 pl-2"
+                className="mt-1 h-10 w-full rounded-md border pl-2"
                 required
               />
             </label>
             <div className="flex justify-between">
               <button
                 type="submit"
-                className="bg-[#FFE072] text-black px-4 py-2 rounded hover:bg-[#FFE072]"
+                className="rounded bg-[#FFE072] px-4 py-2 text-black hover:bg-[#FFE072]"
               >
                 Submit
               </button>
               <button
                 onClick={() => setShowForm(false)}
-                className="bg-black text-white px-4 py-2 rounded hover:bg-red-600"
+                className="rounded bg-black px-4 py-2 text-white hover:bg-red-600"
               >
                 Close
               </button>

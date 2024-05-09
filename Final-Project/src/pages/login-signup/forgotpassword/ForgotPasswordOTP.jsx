@@ -23,13 +23,13 @@ export default function ForgotPasswordOTP(props) {
     props.indexFunc(0);
   };
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <div className="w-[424px] h-[450px]">
+    <div className="flex h-screen w-full items-center justify-center">
+      <div className="h-[450px] w-[424px]">
         <Heading head="SignUp" />
         <div className="ml-[70px] mt-8 font-IBM-Plex-Mono text-[17px] font-semibold">
           OTP Verification
         </div>
-        <div className="ml-[70px] w-[425px] text-[14px] font-IBM-Plex-Mono">
+        <div className="ml-[70px] w-[425px] font-IBM-Plex-Mono text-[14px]">
           Please enter the OTP sent to your E-Mail
         </div>
         <OTPInput

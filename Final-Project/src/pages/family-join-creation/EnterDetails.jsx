@@ -7,32 +7,29 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 
 export default function EnterDetails(props) {
-  
-  const [value, setValue] = useState(dayjs('2022-05-17'));
+  const [value, setValue] = useState(dayjs("2022-05-17"));
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center">
+    <div className="flex h-screen w-screen flex-col items-center justify-center">
       <Heading head={"Welcome " + props.name} />
       <div className="ml-12">
         <TextField head="Father's name" value="text" func={props.fatherFunc} />
         <div className="ml-6 mt-6">
-
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-
-
-          <DatePicker
-          className="w-[375px] font-IBM-Plex-Mono"
-          sx={{'& MuiTextField-root': {
-            border:"black",
-            fontFamily:"Algerian"
-          }}}
-            label="Basic date picker"
-            value={value}
-            onChange={(newValue) => setValue(newValue)}
-            views={['year', 'month', 'day']}
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              className="w-[375px] font-IBM-Plex-Mono"
+              sx={{
+                "& MuiTextField-root": {
+                  border: "black",
+                  fontFamily: "Algerian",
+                },
+              }}
+              label="Basic date picker"
+              value={value}
+              onChange={(newValue) => setValue(newValue)}
+              views={["year", "month", "day"]}
             />
-
-        </LocalizationProvider>
-            </div>
+          </LocalizationProvider>
+        </div>
         <TextField head="Occupation" value="text" func={props.occupationFunc} />
       </div>
       <SubmitButton action="Continue" />

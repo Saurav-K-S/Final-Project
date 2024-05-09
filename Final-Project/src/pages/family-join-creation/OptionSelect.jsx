@@ -3,25 +3,24 @@ import Heading from "../../components/Heading";
 
 export default function OptionSelect(props) {
   function userJoin() {
-    props.indexFunc(2)
-    console.log("USER JOIN")
-    
+    props.indexFunc(2);
+    console.log("USER JOIN");
   }
   function familyCreate() {
-    props.indexFunc(3)
-    console.log("FAMILY CREATE")
-    
+    props.indexFunc(3);
+    console.log("FAMILY CREATE");
   }
-  
+
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center">
+    <div className="flex h-screen w-screen flex-col items-center justify-center">
       <div>
         <Heading head={"Welcome " + props.name} />
-        <div className="qwert text-[17px] font-semibold ml-[75px] font-IBM-Plex-Mono ">
+        <div className="qwert ml-[75px] font-IBM-Plex-Mono text-[17px] font-semibold ">
           Would you like to?
         </div>
-        <div className="flex justify-around items-center mt-9">
-          <div className="w-[175px] h-[185px] rounded-[18px] border-black border-[1.5px] border-dashed flex flex-col items-center justify-center hover:bg-[#FFEEB2] text-[#6A6A6A] hover:text-black transition-all ease-in-out duration-500 cursor-pointer"
+        <div className="mt-9 flex items-center justify-around">
+          <div
+            className="flex h-[185px] w-[175px] cursor-pointer flex-col items-center justify-center rounded-[18px] border-[1.5px] border-dashed border-black text-[#6A6A6A] transition-all duration-500 ease-in-out hover:bg-[#FFEEB2] hover:text-black"
             onClick={userJoin}
           >
             <svg
@@ -43,14 +42,16 @@ export default function OptionSelect(props) {
                 strokeWidth="0.7"
               />
             </svg>
-            <div className="text-[18px] mt-3 text-[#6A6A6A font-IBM-Plex-Mono text-center">
+            <div className="text-[#6A6A6A mt-3 text-center font-IBM-Plex-Mono text-[18px]">
               Join Your
               <br />
               Family
             </div>
           </div>
-          <div className="w-[175px] h-[185px] rounded-[18px] border-black border-[1.5px] border-dashed flex flex-col items-center justify-center hover:bg-[#FFEEB2] text-[#6A6A6A] hover:text-black transition-all ease-in-out duration-500 cursor-pointer"
-          onClick={familyCreate}>
+          <div
+            className="flex h-[185px] w-[175px] cursor-pointer flex-col items-center justify-center rounded-[18px] border-[1.5px] border-dashed border-black text-[#6A6A6A] transition-all duration-500 ease-in-out hover:bg-[#FFEEB2] hover:text-black"
+            onClick={familyCreate}
+          >
             <svg
               width="31"
               height="31"
@@ -68,7 +69,7 @@ export default function OptionSelect(props) {
               />
             </svg>
 
-            <div className="w-[175px] mt-3 text-[18px] font-IBM-Plex-Mono text-center">
+            <div className="mt-3 w-[175px] text-center font-IBM-Plex-Mono text-[18px]">
               Create a new
               <br />
               Family

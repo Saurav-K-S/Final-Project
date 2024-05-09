@@ -139,24 +139,27 @@ export default function Onboarding() {
   ];
   const renderElement = [
     <div>
-      <div className=" mt-5 font-IBM-Plex-Mono font-semibold -ml-28 mb-10 leading-none tracking-widest">
-        Connect with
-        your <span className="font-DM-Serif-Display italic">past</span>
+      <div className=" -ml-28 mb-10 mt-5 font-IBM-Plex-Mono font-semibold leading-none tracking-widest">
+        Connect with your{" "}
+        <span className="font-DM-Serif-Display italic">past</span>
       </div>
     </div>,
     <div>
       <div className="-ml-32  font-IBM-Plex-Mono font-semibold leading-none tracking-widest">
-        Get in touch with your <span className="font-DM-Serif-Display italic">roots</span>
+        Get in touch with your{" "}
+        <span className="font-DM-Serif-Display italic">roots</span>
       </div>
     </div>,
     <div>
-      <div className="mr-20 mt-7 font-IBM-Plex-Mono font-semibold -ml-28 mb-10 leading-none tracking-wide">
-        Get family event{" "}<span className="font-DM-Serif-Display italic">reminders</span>
+      <div className="-ml-28 mb-10 mr-20 mt-7 font-IBM-Plex-Mono font-semibold leading-none tracking-wide">
+        Get family event{" "}
+        <span className="font-DM-Serif-Display italic">reminders</span>
       </div>
     </div>,
     <div>
-      <div className="mr-20 mb-12 font-IBM-Plex-Mono font-semibold -ml-32 mt-5 leading-none tracking-wide">
-        Discover your family’s <span className="font-DM-Serif-Display italic">story</span>
+      <div className="-ml-32 mb-12 mr-20 mt-5 font-IBM-Plex-Mono font-semibold leading-none tracking-wide">
+        Discover your family’s{" "}
+        <span className="font-DM-Serif-Display italic">story</span>
       </div>
     </div>,
   ];
@@ -167,15 +170,19 @@ export default function Onboarding() {
   const ref4 = useRef(null);
 
   function handleAnimation(deg) {
-    
     switch (deg) {
       case 343:
         setElementIndex(0);
-        gsap.to(".select",{ x:-10,y:8, ease: "ease.inOut(1,0.3)",duration:2 });
+        gsap.to(".select", {
+          x: -10,
+          y: 8,
+          ease: "ease.inOut(1,0.3)",
+          duration: 2,
+        });
         gsap.to(".main", {
           x: "random(90, 150)", //chooses a random number between -20 and 20 for each target, rounding to the closest 5!
           y: "random(190, 250)",
-      
+
           rotation: "random(-15,15)",
           ease: "ease.inOut(1,0.3)",
           duration: 1.5,
@@ -183,7 +190,7 @@ export default function Onboarding() {
         gsap.to(".mainSVG", {
           x: "random(90, 150)", //chooses a random number between -20 and 20 for each target, rounding to the closest 5!
           y: "random(190, 250)",
-      
+
           rotation: "random(-15,15)",
           ease: "ease.inOut(1,0.3)",
           duration: 1.5,
@@ -191,12 +198,17 @@ export default function Onboarding() {
         break;
       case 351:
         setElementIndex(1);
-        gsap.to(".select", {x: 7,y:6, ease: "ease.inOut(1,0.3)" ,duration:2});
+        gsap.to(".select", {
+          x: 7,
+          y: 6,
+          ease: "ease.inOut(1,0.3)",
+          duration: 2,
+        });
 
         gsap.to(".main", {
           x: "random(90, 150)", //chooses a random number between -20 and 20 for each target, rounding to the closest 5!
           y: "random(190, 250)",
-      
+
           rotation: "random(-15,15)",
           ease: "ease.inOut(1,0.3)",
           duration: 1.5,
@@ -204,7 +216,7 @@ export default function Onboarding() {
         gsap.to(".mainSVG", {
           x: "random(90, 150)", //chooses a random number between -20 and 20 for each target, rounding to the closest 5!
           y: "random(190, 250)",
-      
+
           rotation: "random(-15,15)",
           ease: "ease.inOut(1,0.3)",
           duration: 1.5,
@@ -212,12 +224,17 @@ export default function Onboarding() {
         break;
       case 360:
         setElementIndex(2);
-        gsap.to(".select", {x: 9,y:-3, ease: "ease.inOut(1,0.3)" ,duration:2});
+        gsap.to(".select", {
+          x: 9,
+          y: -3,
+          ease: "ease.inOut(1,0.3)",
+          duration: 2,
+        });
 
         gsap.to(".main", {
           x: "random(90, 150)", //chooses a random number between -20 and 20 for each target, rounding to the closest 5!
           y: "random(190, 250)",
-      
+
           rotation: "random(-15,15)",
           ease: "ease.inOut(1,0.3)",
           duration: 1.5,
@@ -225,7 +242,7 @@ export default function Onboarding() {
         gsap.to(".mainSVG", {
           x: "random(90, 150)", //chooses a random number between -20 and 20 for each target, rounding to the closest 5!
           y: "random(190, 250)",
-      
+
           rotation: "random(-15,15)",
           ease: "ease.inOut(1,0.3)",
           duration: 1.5,
@@ -233,12 +250,17 @@ export default function Onboarding() {
         break;
       case 370:
         setElementIndex(3);
-        gsap.to(".select", {x: 10,y:0, ease: "ease.inOut(1,0.3)" ,duration:2});
+        gsap.to(".select", {
+          x: 10,
+          y: 0,
+          ease: "ease.inOut(1,0.3)",
+          duration: 2,
+        });
 
         gsap.to(".main", {
           x: "random(90, 150)", //chooses a random number between -20 and 20 for each target, rounding to the closest 5!
           y: "random(190, 250)",
-      
+
           rotation: "random(-15,15)",
           ease: "ease.inOut(1,0.3)",
           duration: 1.5,
@@ -246,7 +268,7 @@ export default function Onboarding() {
         gsap.to(".mainSVG", {
           x: "random(90, 150)", //chooses a random number between -20 and 20 for each target, rounding to the closest 5!
           y: "random(190, 250)",
-      
+
           rotation: "random(-15,15)",
           ease: "ease.inOut(1,0.3)",
           duration: 1.5,
@@ -287,11 +309,11 @@ export default function Onboarding() {
   }, []);
 
   return (
-    <div className="pages snap snap-mandatory  snap-y scrollbar-none">
+    <div className="pages snap snap-y  snap-mandatory scrollbar-none">
       <Circle deg={deg} changeDeg={changeDeg} />
-      <div className="select fixed bottom-[9%] right-[44.3%] w-[8%] h-[17%] border-[0.2px] bg-hover-element bg-contain -z-1 rounded-3xl border-black border-dashed "></div>
-      <div className="fixed w-full top-3 left-0 flex justify-between items-center px-9 font-IBM-Plex-Mono">
-        <div className="h-max w-[7%] flex flex-col justify-evenly items-center border-[0.2px] text-[15px]  rounded-3xl border-black p-3">
+      <div className="select -z-1 fixed bottom-[9%] right-[44.3%] h-[17%] w-[8%] rounded-3xl border-[0.2px] border-dashed border-black bg-hover-element bg-contain "></div>
+      <div className="fixed left-0 top-3 flex w-full items-center justify-between px-9 font-IBM-Plex-Mono">
+        <div className="flex h-max w-[7%] flex-col items-center justify-evenly rounded-3xl border-[0.2px]  border-black p-3 text-[15px]">
           <svg
             width="48"
             height="61"
@@ -339,9 +361,9 @@ export default function Onboarding() {
           </svg>
           AncesTree
         </div>
-        <div className="flex justify-around w-[25%]">
+        <div className="flex w-[25%] justify-around">
           <div
-            className="clickable border-[0.2px]  rounded-3xl border-black p-3 hover:bg-[#FFDC5F] duration-500"
+            className="clickable rounded-3xl  border-[0.2px] border-black p-3 duration-500 hover:bg-[#FFDC5F]"
             onClick={() => {
               navigate("/signup");
             }}
@@ -349,7 +371,7 @@ export default function Onboarding() {
             Register
           </div>
           <div
-            className="clickable border-[0.2px]  rounded-3xl border-black p-3 hover:bg-[#FFDC5F] duration-500 "
+            className="clickable rounded-3xl  border-[0.2px] border-black p-3 duration-500 hover:bg-[#FFDC5F] "
             onClick={() => {
               navigate("/login");
             }}
@@ -364,21 +386,21 @@ export default function Onboarding() {
         data-id="343"
         ref={ref1}
       >
-        <div className="outlined-text text-[180px] text-[#373737] font-IBM-Plex-Mono font-semibold -ml-28 mb-10 leading-none tracking-widest">
+        <div className="outlined-text -ml-28 mb-10 font-IBM-Plex-Mono text-[180px] font-semibold leading-none tracking-widest text-[#373737]">
           Connect with
           <br />
           your <span className="font-DM-Serif-Display italic">past</span>
         </div>
       </div>
       <div className="page snap-center" id="about" data-id="351" ref={ref2}>
-        <div className="outlined-text  text-[180px] text-[#373737] font-IBM-Plex-Mono font-semibold -ml-28 mb-10 leading-none tracking-normal">
+        <div className="outlined-text  -ml-28 mb-10 font-IBM-Plex-Mono text-[180px] font-semibold leading-none tracking-normal text-[#373737]">
           Get in touch
           <br />
           with your <span className="font-DM-Serif-Display italic">roots</span>
         </div>
       </div>
       <div className="page snap-center" id="contact" data-id="360" ref={ref3}>
-        <div className="outlined-text  text-[180px] text-[#373737] font-IBM-Plex-Mono font-semibold -ml-28 mb-10 leading-none tracking-wide">
+        <div className="outlined-text  -ml-28 mb-10 font-IBM-Plex-Mono text-[180px] font-semibold leading-none tracking-wide text-[#373737]">
           Get family <br /> event{" "}
           <span className="font-DM-Serif-Display italic">reminders</span>
         </div>
@@ -389,32 +411,32 @@ export default function Onboarding() {
         data-id="370"
         ref={ref4}
       >
-        <div className="text-[180px] text-[#373737] font-IBM-Plex-Mono font-semibold -ml-32 mt-5 leading-none tracking-wide">
+        <div className="-ml-32 mt-5 font-IBM-Plex-Mono text-[180px] font-semibold leading-none tracking-wide text-[#373737]">
           Discover your
           <br />
           family’s <span className="font-DM-Serif-Display italic">story</span>
         </div>
       </div>
 
-      <div className="main fixed top-[5%] left-[2%] w-[45%] h-[25%]">
-        <div className="absolute w-[100%] h-[100%] z-50 bg-[#FFDC5F] border-[1px] flex justify-center pl-[30%] items-center  border-black rounded-[73px] text-[60px]">
+      <div className="main fixed left-[2%] top-[5%] h-[25%] w-[45%]">
+        <div className="absolute z-50 flex h-[100%] w-[100%] items-center justify-center rounded-[73px] border-[1px] border-black  bg-[#FFDC5F] pl-[30%] text-[60px]">
           {renderElement[elementIndex]}
         </div>
-        <div className="absolute w-[100%] h-[100%] z-40 bg-[#FFDC5F] border-[1px] border-black rounded-[73px] mt-[10px] -ml-[7px]"></div>
-        <div className="absolute w-[100%] h-[100%] z-30 bg-[#FFDC5F] border-[1px] border-black rounded-[73px] mt-[20px] -ml-[14px]"></div>
-        <div className="absolute w-[100%] h-[100%] z-20 bg-[#FFDC5F] border-[1px] border-black rounded-[73px] mt-[30px] -ml-[21px]"></div>
-        <div className="absolute w-[100%] h-[100%] z-10 bg-[#FFDC5F] border-[1px] border-black rounded-[73px] mt-[40px] -ml-[28px]"></div>
-        <div className="absolute w-[100%] h-[100%] z-0 bg-[#FFDC5F] border-[1px] border-black rounded-[73px] mt-[50px] -ml-[35px]"></div>
+        <div className="absolute z-40 -ml-[7px] mt-[10px] h-[100%] w-[100%] rounded-[73px] border-[1px] border-black bg-[#FFDC5F]"></div>
+        <div className="absolute z-30 -ml-[14px] mt-[20px] h-[100%] w-[100%] rounded-[73px] border-[1px] border-black bg-[#FFDC5F]"></div>
+        <div className="absolute z-20 -ml-[21px] mt-[30px] h-[100%] w-[100%] rounded-[73px] border-[1px] border-black bg-[#FFDC5F]"></div>
+        <div className="absolute z-10 -ml-[28px] mt-[40px] h-[100%] w-[100%] rounded-[73px] border-[1px] border-black bg-[#FFDC5F]"></div>
+        <div className="absolute z-0 -ml-[35px] mt-[50px] h-[100%] w-[100%] rounded-[73px] border-[1px] border-black bg-[#FFDC5F]"></div>
       </div>
-      <div className="mainSVG  fixed top-[10%] right-[15%] w-[18%] h-[25%]">
-        <div className="absolute w-[100%] h-[100%] z-50 bg-[#FFDC5F] border-[1px] flex justify-center items-center  border-black rounded-[73px] text-[60px]">
+      <div className="mainSVG  fixed right-[15%] top-[10%] h-[25%] w-[18%]">
+        <div className="absolute z-50 flex h-[100%] w-[100%] items-center justify-center rounded-[73px] border-[1px]  border-black bg-[#FFDC5F] text-[60px]">
           {renderSVGElement[elementIndex]}
         </div>
-        <div className="absolute w-[100%] h-[100%] z-40 bg-[#FFDC5F] border-[1px] border-black rounded-[73px] mt-[10px] ml-[7px]"></div>
-        <div className="absolute w-[100%] h-[100%] z-30 bg-[#FFDC5F] border-[1px] border-black rounded-[73px] mt-[20px] ml-[14px]"></div>
-        <div className="absolute w-[100%] h-[100%] z-20 bg-[#FFDC5F] border-[1px] border-black rounded-[73px] mt-[30px] ml-[21px]"></div>
-        <div className="absolute w-[100%] h-[100%] z-10 bg-[#FFDC5F] border-[1px] border-black rounded-[73px] mt-[40px] ml-[28px]"></div>
-        <div className="absolute w-[100%] h-[100%] z-0 bg-[#FFDC5F] border-[1px] border-black rounded-[73px] mt-[50px] ml-[35px]"></div>
+        <div className="absolute z-40 ml-[7px] mt-[10px] h-[100%] w-[100%] rounded-[73px] border-[1px] border-black bg-[#FFDC5F]"></div>
+        <div className="absolute z-30 ml-[14px] mt-[20px] h-[100%] w-[100%] rounded-[73px] border-[1px] border-black bg-[#FFDC5F]"></div>
+        <div className="absolute z-20 ml-[21px] mt-[30px] h-[100%] w-[100%] rounded-[73px] border-[1px] border-black bg-[#FFDC5F]"></div>
+        <div className="absolute z-10 ml-[28px] mt-[40px] h-[100%] w-[100%] rounded-[73px] border-[1px] border-black bg-[#FFDC5F]"></div>
+        <div className="absolute z-0 ml-[35px] mt-[50px] h-[100%] w-[100%] rounded-[73px] border-[1px] border-black bg-[#FFDC5F]"></div>
       </div>
     </div>
   );

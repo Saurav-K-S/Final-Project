@@ -24,7 +24,6 @@ export default function Photos() {
       )
       .then(function (response) {
         if (response.data.success) {
-          
           console.log(response);
           setPhotosData(response.data.albumsFiles);
         } else {
@@ -33,10 +32,12 @@ export default function Photos() {
         }
       })
       .catch(function (error) {
-if(error.response.status == 401){navigate("/")
-            localStorage.setItem("token", "");}
-            setAlertMsg(error.response.data.msg);
-            setShowAlert(true);
+        if (error.response.status == 401) {
+          navigate("/");
+          localStorage.setItem("token", "");
+        }
+        setAlertMsg(error.response.data.msg);
+        setShowAlert(true);
         console.log(error);
       });
   }, []);
@@ -86,24 +87,24 @@ if(error.response.status == 401){navigate("/")
       });
   }
   return (
-    <div className="h-screen w-screen grid grid-cols-3 gap-x-5 gap-y-5 grid-rows-3 p-10 overflow-y-scroll scrollbar-none  ">
+    <div className="grid h-screen w-screen grid-cols-3 grid-rows-3 gap-x-5 gap-y-5 overflow-y-scroll p-10 scrollbar-none  ">
       {showImage && (
         <div
-          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
+          className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50"
           onClick={() => setShowImage(false)}
         >
-          <div className="h-[90%] w-max overflow-clip rounded-lg shadow-lg flex justify-center pointer-events-none">
+          <div className="pointer-events-none flex h-[90%] w-max justify-center overflow-clip rounded-lg shadow-lg">
             <img src={imageSRC} alt="" />
           </div>
         </div>
       )}
       {showImageUpload && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-          <form className="bg-[#FFEEB2] p-8 rounded-lg shadow-lg">
-            <label className="block mb-4 font-IBM-Plex-Mono font-semibold">
+        <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
+          <form className="rounded-lg bg-[#FFEEB2] p-8 shadow-lg">
+            <label className="mb-4 block font-IBM-Plex-Mono font-semibold">
               Family Photo:
               <div>
-                <div className="w-[375px] h-[185px]">
+                <div className="h-[185px] w-[375px]">
                   <label
                     // htmlFor="fileInput"
                     className=" relative inline-block cursor-pointer"
@@ -117,8 +118,8 @@ if(error.response.status == 401){navigate("/")
                     <div
                       className={
                         uploaded
-                          ? "-z-2 hidden w-[375px] absolute h-[185px]"
-                          : "z-1 w-[375px] absolute h-[185px] border-[#6A6A6A] border-[1px] border-dashed rounded-[18px] flex flex-col justify-center items-center"
+                          ? "-z-2 absolute hidden h-[185px] w-[375px]"
+                          : "z-1 absolute flex h-[185px] w-[375px] flex-col items-center justify-center rounded-[18px] border-[1px] border-dashed border-[#6A6A6A]"
                       }
                     >
                       <svg
@@ -137,7 +138,7 @@ if(error.response.status == 401){navigate("/")
                           strokeLinejoin="round"
                         />
                       </svg>
-                      <div className="font-IBM-Plex-Mono text-[14px] text-[#6A6A6A] mt-3">
+                      <div className="mt-3 font-IBM-Plex-Mono text-[14px] text-[#6A6A6A]">
                         Upload Picture
                       </div>
                     </div>
@@ -147,8 +148,8 @@ if(error.response.status == 401){navigate("/")
                     // key={index}
                     className={
                       uploaded
-                        ? "z-1 absolute w-[375px] h-[185px]   overflow-hidden border-[#6A6A6A] border-[1px] border-dashed rounded-[18px] flex flex-col justify-center items-center"
-                        : " -z-2 absolute w-[375px] h-[185px] hidden"
+                        ? "z-1 absolute flex h-[185px]   w-[375px] flex-col items-center justify-center overflow-hidden rounded-[18px] border-[1px] border-dashed border-[#6A6A6A]"
+                        : " -z-2 absolute hidden h-[185px] w-[375px]"
                     }
                   >
                     <img
@@ -159,10 +160,10 @@ if(error.response.status == 401){navigate("/")
                 </div>
               </div>
             </label>
-            <div className="flex justify-between mt-10">
+            <div className="mt-10 flex justify-between">
               <div className={uploaded ? "block" : "hidden"}>
                 <div
-                  className="clickable bg-red text-black px-4 py-2 rounded hover:bg-[#FFE072] border border-black cursor-pointer"
+                  className="clickable bg-red cursor-pointer rounded border border-black px-4 py-2 text-black hover:bg-[#FFE072]"
                   onClick={() => {
                     onContinue();
                   }}
@@ -171,7 +172,7 @@ if(error.response.status == 401){navigate("/")
                 </div>
               </div>
               <div
-                className="clickable bg-black text-white px-4 py-2 rounded hover:bg-red-600 cursor-pointer"
+                className="clickable cursor-pointer rounded bg-black px-4 py-2 text-white hover:bg-red-600"
                 onClick={() => {
                   onRemove(), setShowImageUpload(false);
                 }}
@@ -200,7 +201,7 @@ if(error.response.status == 401){navigate("/")
       )}
       {photosData.map((photosData, index) => (
         <div
-          className="clickable overflow-hidden h-auto w-auto rounded-3xl border-[1px] border-black flex justify-center items-center"
+          className="clickable flex h-auto w-auto items-center justify-center overflow-hidden rounded-3xl border-[1px] border-black"
           onClick={() => {
             setShowImage(true), setImageSRC(photosData);
           }}
@@ -209,7 +210,7 @@ if(error.response.status == 401){navigate("/")
         </div>
       ))}
       <div
-        className="clickable h-auto w-auto p-10 rounded-3xl border-[1px] border-black flex justify-center items-center"
+        className="clickable flex h-auto w-auto items-center justify-center rounded-3xl border-[1px] border-black p-10"
         onClick={() => {
           setShowImageUpload(true);
         }}

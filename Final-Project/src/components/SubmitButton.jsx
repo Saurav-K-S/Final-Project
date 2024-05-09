@@ -6,7 +6,7 @@ export default function SubmitButton(props) {
       <div>
         <button
           onClick={props.func}
-          className="clickable cursor-none bg-[#FFEEB2] text-[17px] font-semibold font-IBM-Plex-Mono border-[0.5px] border-black rounded-[18px] w-[380px]  h-[52px] p-3 "
+          className="clickable h-[52px] w-[380px] cursor-none rounded-[18px] border-[0.5px] border-black bg-[#FFEEB2] p-3 font-IBM-Plex-Mono  text-[17px] font-semibold "
         >
           {props.action}
         </button>

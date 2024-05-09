@@ -14,21 +14,22 @@ export default function SignUpEmail(props) {
 
   const [passwordAgain, setPasswordAgain] = useState("");
 
-
   const nameInputRef = useRef(null);
   const numberInputRef = useRef(null);
   const passwordInputRef = useRef(null);
   const passwordAgainInputRef = useRef(null);
   useEffect(() => {
-    
-    gsap.fromTo(".signup",{
-      opacity:0,
-
-    },{opacity:1,duration:2})
+    gsap.fromTo(
+      ".signup",
+      {
+        opacity: 0,
+      },
+      { opacity: 1, duration: 2 }
+    );
   }, []);
   function Continue() {
     if (psswdcheck) {
-      localStorage.setItem('name', props.name);
+      localStorage.setItem("name", props.name);
       props.indexFunc(1);
     } else {
       setAlertMsg("Invalid Password!"), setShowAlert(true);
@@ -42,8 +43,8 @@ export default function SignUpEmail(props) {
     setShowAlert(false);
   };
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <div className="signup w-[410px] h-max ">
+    <div className="flex h-screen w-full items-center justify-center">
+      <div className="signup h-max w-[410px] ">
         <Heading head="SignUp" />
         <TextField head="Name" func={props.nameFunc} inputRef={nameInputRef} />
         <TextField
@@ -57,14 +58,12 @@ export default function SignUpEmail(props) {
           func={props.passwordFunc}
           inputRef={passwordInputRef}
           type="password"
-
         />
         <TextField
           head="Confirm Password"
           func={setPasswordAgain}
           inputRef={passwordAgainInputRef}
           type="password"
-
         />
         <PasswordChecklist
           className="text-[12px]"

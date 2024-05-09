@@ -18,7 +18,7 @@ export default function SignUp() {
     case 0:
       return (
         <SignUpEmail
-        name={name}
+          name={name}
           indexFunc={setIndex}
           nameFunc={setName}
           numberFunc={setNumber}
@@ -47,11 +47,7 @@ export default function SignUp() {
         />
       );
     case 3:
-      return (
-        <Login
-          newUser={true}
-        />
-      );
+      return <Login newUser={true} />;
     default:
       break;
   }
