@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { format } from "date-fns";
+import Alert from "../../components/Alert";
 
 export default function HomePage() {
   const [familyName, setFamilyName] = useState("");
