@@ -184,7 +184,7 @@ export default function HomePage() {
                     {eventData.name}
                   </div>
                   <div className="font-IBM-Plex-Mono text-[11px] text-[#656565]">
-                    {eventData.details} scheduled for {eventData.date}
+                    {eventData.details} <br />Scheduled for {eventData.date}
                   </div>
                 </div>
               ))}
@@ -198,7 +198,7 @@ export default function HomePage() {
                     {eventData.name}
                   </div>
                   <div className="font-IBM-Plex-Mono text-[11px] text-[#656565]">
-                    {eventData.details} scheduled for{" "}
+                    {eventData.details} <br />Scheduled for{" "}
                     {formatDate(eventData.date)}
                   </div>
                 </div>

@@ -126,6 +126,7 @@ const renderCustomNode = (
           spouse: response.data.member.spouse,
           occupation: response.data.member.occupation,
           noOfChildren: response.data.member.noOfChildren,
+          email:response.data.member.email
         });
       })
       .catch(function (error) {
@@ -245,6 +246,7 @@ export default function TreePage() {
     father: "",
     dob: "",
     dod: "",
+    email: "",
     bloodGroup: "",
     WmobileNumber: "",
     spouse: null,
@@ -518,6 +520,10 @@ export default function TreePage() {
             <div className="mt-3 flex w-max  flex-col items-start justify-center rounded-lg px-3 py-2">
               <div className="w-min text-[#676767]">Number of Children:</div>
               <div className="font-semibold">{displayMember.noOfChildren}</div>
+            </div>
+            <div className="mt-3 flex w-max  flex-col items-start justify-center rounded-lg px-3 py-2 col-span-2">
+              <div className="w-min text-[#676767]">Email:</div>
+              <div className="font-semibold">{displayMember.email}</div>
             </div>
           </div>
         </div>
